@@ -1,0 +1,15 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+@media only screen and (max-width: 766px) {
+  .menubar{
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 766px) {
+  .mobilemenu{
+    display: none;
+  }
+}

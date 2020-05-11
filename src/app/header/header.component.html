@@ -1,1 +1,28 @@
-<p>header works!</p>
+<mat-toolbar color="primary">
+
+  <mat-icon>D</mat-icon>
+
+  <div class="spacer"></div>
+  <div class="menubar">
+
+    <button mat-button routerLink="/">Home</button>
+
+    <button mat-button routerLink="categories">Categories</button>
+
+    <button mat-button routerLink="post">Offer Your Services</button>
+
+  </div>
+
+  <div class="mobilemenu">
+    <button mat-button [matMenuTriggerFor]="appMenu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #appMenu="matMenu">
+      <button mat-menu-item routerLink="/">Home</button>
+      <button mat-menu-item routerLink="/categories">Categories</button>
+      <button mat-menu-item routerLink="/post">Offer Your Services</button>
+    </mat-menu>
+
+  </div>
+
+</mat-toolbar>
