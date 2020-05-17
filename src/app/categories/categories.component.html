@@ -1,1 +1,57 @@
-<p>categories works!</p>
+<div class="container">
+
+    <div class=" menu">
+      <ul style="list-style-type:none; margin-left: -30px; display: flex; flex-direction: column;">
+        <li>
+          <button mat-button color="primary">Auto Repairs</button>
+
+        </li>
+        <hr>
+        <li>
+          <button mat-button color="primary">Elect. Repairs</button>
+
+        </li>
+        <hr>
+        <li>
+          <button mat-button color="primary">Farm Produce</button>
+
+        </li>
+        <hr>
+        <li>
+          <button mat-button color="primary">Caterine Services</button>
+           <!-- Caterine Services -->
+        </li>
+        <hr>
+        <li>
+          <button mat-button color="primary">VET Services</button>
+
+        </li>
+        <hr>
+        <li>
+          <button mat-button color="primary">Auto Repairs</button>
+
+        </li>
+        <hr>
+        <li>
+          <button mat-button color="primary">Auto Repairs</button>
+
+        </li>
+      </ul>
+    </div>
+    <div class="catContent">
+      <mat-card *ngFor='let Item of Items' class="content">
+        <mat-card-header>
+          <mat-card-title>{{Item.names}}</mat-card-title>
+          <mat-card-subtitle>{{Item.category}}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p>{{Item.desc}}</p>
+          <br> {{Item.details}}
+        </mat-card-content>
+      </mat-card>
+
+
+    </div>
+
+</div>

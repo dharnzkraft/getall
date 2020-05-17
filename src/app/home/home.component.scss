@@ -1,0 +1,149 @@
+.background{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 40px auto 0 auto;
+  padding: 30px 0;
+  align-items: center;
+}
+
+.homeContent {
+  flex-basis: 40%;
+  margin: auto;
+  background: linear-gradient(#cc0066, #9933ff, #e6ccff);
+  border-radius: 6px;
+  box-shadow: #ccc 2px 3px 4px;
+}
+
+.first {
+  margin-top: -50px;
+}
+.fourth{
+  margin-top: 60px;
+}
+
+.some {
+  max-width: 1400px;
+  margin: 40px auto 0 auto;
+  padding: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.img {
+  width: 300px;
+  height: 200px;
+  background: #ccc;
+  text-align: center;
+  font-size: 60px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 2px 3px 4px;
+}
+
+// liquid button
+.button{
+    position:relative;
+    width: 50px;
+    height:50px;
+    margin: 0 auto;
+}
+
+i{
+    position: absolute;
+    top:50%;
+    left:50%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10 ;
+    color: white;
+}
+
+.blurred{
+    position: relative;
+    top: 0;
+    left:0;
+    width: 50px;
+    border-radius:100%;
+    filter: url(#goo);
+}
+
+.blurred::before{
+    content: '';
+    position: absolute;
+    top:50%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    background-color:black;
+    border-radius: 100%;
+    transition: 1.5s cubic-bezier(0,2,.61,-0.05);
+}
+
+.blurred::after{
+    content: '';
+    position: absolute;
+    top:50%;
+    height: 50%;
+    transform: translate(-50%, -50%);
+    background-color:black;
+    border-radius: 100%;
+    transition: 1.7s cubic-bezier(0,2,.61,-0.05);
+}
+
+.blurred > span:nth-of-type(1),
+.blurred > span:nth-of-type(2){
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top:0;
+    left: 0;
+    background-color: black;
+    border-radius: 100%;
+    transition: 1.2s cubic-bezier(0,2,.61,-0.05);
+}
+
+.button:hover .blurred::before {
+    width: 15px;
+    height: 15px;
+    top: 50%;
+    left: 50%;
+}
+
+.button:hover .blurred::after {
+    width: 15px;
+    height: 15px;
+    top: 30px;
+    left: 45px;
+}
+
+.button:hover .blurred > span:nth-of-type(2){
+    width: 25px;
+    height: 25px;
+    top: 40px;
+    left: -20px;
+}
+
+// end of liquid button
+
+.farm {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.farmcard {
+
+  height: auto;
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 700px) {
+  .farmcard{
+    flex-basis: 45%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+}

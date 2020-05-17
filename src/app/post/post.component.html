@@ -1,6 +1,7 @@
-<mat-card>
+<mat-card class="post">
 
-  <form class="container" (ngSubmit)="addPost()">
+
+  <form class="container" id="inputDetails" (ngSubmit)="addPost()">
     <mat-form-field appearance="outline">
       <mat-label>Name</mat-label>
       <input matInput required [(ngModel)]="name" name="names">
@@ -21,13 +22,29 @@
       <mat-label>Service Description</mat-label>
       <textarea matInput required [(ngModel)]="description" name="desc"></textarea>
     </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Contact Details</mat-label>
+      <input matInput required [(ngModel)]="details" name="details" placeholder="Email or Phone Number">
+    </mat-form-field>
+    <br>
+    <!-- <input type="file" (change)="uploadFile($event)" [(ngModel)]="pic" name="pic"> -->
 
-    <button mat-button color="primary" type="submit">submit</button>
+    <br>
+    <button  mat-raised-button color="primary" type="submit">submit</button>
   </form>
 
 
 
 </mat-card>
-<mat-card class="container" *ngFor='let Item of Items'>
-  {{item.name}} : {{item.category}}
-</mat-card>
+<!-- <mat-card class="container" *ngFor='let Item of Items'>
+  <mat-card-header>
+    <mat-card-title>{{Item.names}}</mat-card-title>
+    <mat-card-subtitle>{{Item.category}}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{Item.desc}}</p>
+    <br>
+    {{Item.details}}
+  </mat-card-content>
+</mat-card> -->

@@ -20,6 +20,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
+import {MatChipsModule} from '@angular/material/chips';
+
 // import { MatOptionModule } from '@angular/material/option';
 
 
@@ -27,6 +31,8 @@ import { MatCardModule } from '@angular/material/card';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
+import { AngularFireStorageModule } from '@angular/fire/storage/angular-fire-storage';
+
 
 @NgModule({
   declarations: [
@@ -53,7 +59,11 @@ import { environment } from '../environments/environment';
     MatSelectModule,
     ReactiveFormsModule,
     MatCardModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    MatListModule,
+    MatDividerModule,
+    AngularFireStorageModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
