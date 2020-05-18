@@ -1,41 +1,162 @@
-<mat-card class="post">
+<div  style=" padding: 5px; border-radius: 0 0 5px 5px; color:#8c8c8c; background: white; text-align: center;  width: 100%;">
+  <img src="../../assets/img/hiring.png" alt="banner" style="width: 100%; position: relative;" />
+  <div class="content" style="border-radius: 15px 15px 0 0; padding: 10px; background: #4d0099; position: relative;">
+    <h1 style="color: white;">Select A Category To Begin Registration
+    </h1>
+    <div style="display: flex; flex-wrap: wrap; width:100; justify-content: space-around;">
+    <button mat-raised-button color="accent" class="fabricbtn" (click)="fabricShow()">Fabrics</button>
+    <br>
+    <br>
+    <button mat-raised-button color="accent" (click)="tabToggle(1)">Auto Repair And Sale</button>
+    <br>
+    <br>
+    <button mat-raised-button color="accent" (click)="electShow()">Electronics And Electrical</button>
+    <br>
+    <br>
+    <button mat-raised-button color="accent" (click)="agricShow()">Agricultural Produce</button>
+    <br>
+    <br>
+    <button mat-raised-button color="accent" (click)="saleShow()">Sales</button>
+    </div>
+  </div>
+</div>
 
-
-  <form class="container" id="inputDetails" (ngSubmit)="addPost()">
+<mat-card class="well post" style=" padding: 10px;">
+  <!-- fabrics -->
+  <form class=" fabric" *ngIf="show"  id="inputDetails" (ngSubmit)="addFabric()">
+    <mat-card-header>
+      <mat-card-title>FABRIC</mat-card-title>
+    </mat-card-header>
     <mat-form-field appearance="outline">
       <mat-label>Name</mat-label>
-      <input matInput required [(ngModel)]="name" name="names">
+      <input matInput required [(ngModel)]="name" name="fabricnames">
     </mat-form-field>
     <br>
-    <mat-form-field appearance="fill">
-      <mat-label>Select</mat-label>
-      <mat-select [(ngModel)]="category" name="category">
-        <mat-option value="option1">Category 1</mat-option>
-        <mat-option value="option2">Category 2</mat-option>
-        <mat-option value="option3">Category 3</mat-option>
-        <mat-option value="option4">Category 4</mat-option>
-        <mat-option value="option5">Category 5</mat-option>
-      </mat-select>
+    <mat-form-field appearance="outline">
+      <mat-label>Location Address</mat-label>
+      <input matInput required [(ngModel)]="location" name="fabriclocation">
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline">
       <mat-label>Service Description</mat-label>
-      <textarea matInput required [(ngModel)]="description" name="desc"></textarea>
+      <textarea matInput required [(ngModel)]="description" name="fabricdesc"></textarea>
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline">
       <mat-label>Contact Details</mat-label>
-      <input matInput required [(ngModel)]="details" name="details" placeholder="Email or Phone Number">
+      <input matInput required [(ngModel)]="details" name="fabricdetails" placeholder="Email or Phone Number">
     </mat-form-field>
     <br>
-    <!-- <input type="file" (change)="uploadFile($event)" [(ngModel)]="pic" name="pic"> -->
-
-    <br>
-    <button  mat-raised-button color="primary" type="submit">submit</button>
+    <button  mat-raised-button color="accent" type="submit">submit</button>
   </form>
-
-
-
+  <!-- Auto form -->
+  <form class="auto" *ngIf="showTab == 1" id="inputDetails" (ngSubmit)="addAuto()">
+    <mat-card-header>
+      <mat-card-title>AUTO REPAIRS & SALE</mat-card-title>
+    </mat-card-header>
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput required [(ngModel)]="name" name="autonames">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Location Address</mat-label>
+      <input matInput required [(ngModel)]="location" name="autolocation">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Service Description</mat-label>
+      <textarea matInput required [(ngModel)]="description" name="autodesc"></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Contact Details</mat-label>
+      <input matInput required [(ngModel)]="details" name="autodetails" placeholder="Email or Phone Number">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="accent" type="submit">submit</button>
+  </form>
+  <!-- Agric -->
+  <form class=" agric" *ngIf="show" id="inputDetails" (ngSubmit)="addAgric()">
+    <mat-card-header>
+      <mat-card-title>AGRIC. & LIVESTOCKS</mat-card-title>
+    </mat-card-header>
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput required [(ngModel)]="name" name="agricnames">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Location Address</mat-label>
+      <input matInput required [(ngModel)]="location" name="agriclocation">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Service Description</mat-label>
+      <textarea matInput required [(ngModel)]="description" name="agricdesc"></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Contact Details</mat-label>
+      <input matInput required [(ngModel)]="details" name="agricdetails" placeholder="Email or Phone Number">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="accent" type="submit">submit</button>
+  </form>
+  <!-- sales -->
+  <form class=" sales" *ngIf="show" id="inputDetails" (ngSubmit)="addSale()">
+    <mat-card-header>
+      <mat-card-title>GOODS SALES</mat-card-title>
+    </mat-card-header>
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput required [(ngModel)]="name" name="salenames">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Location Address</mat-label>
+      <input matInput required [(ngModel)]="location" name="salelocation">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Service Description</mat-label>
+      <textarea matInput required [(ngModel)]="description" name="saledesc"></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Contact Details</mat-label>
+      <input matInput required [(ngModel)]="details" name="saledetails" placeholder="Email or Phone Number">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="accent" type="submit">submit</button>
+  </form>
+  <!-- electronic -->
+  <form class=" electronic" *ngIf="show" id="inputDetails" (ngSubmit)="addElect()">
+    <mat-card-header>
+      <mat-card-title>ELECTRONIC REPAIRS AND SALE</mat-card-title>
+    </mat-card-header>
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput required [(ngModel)]="name" name="electnames">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Location Address</mat-label>
+      <input matInput required [(ngModel)]="location" name="electlocation">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Service Description</mat-label>
+      <textarea matInput required [(ngModel)]="description" name="electdesc"></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+      <mat-label>Contact Details</mat-label>
+      <input matInput required [(ngModel)]="details" name="electdetails" placeholder="Email or Phone Number">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button color="accent" type="submit">submit</button>
+  </form>
 </mat-card>
 <!-- <mat-card class="container" *ngFor='let Item of Items'>
   <mat-card-header>

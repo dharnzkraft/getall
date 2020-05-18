@@ -1,9 +1,29 @@
 .post{
   align-items: center;
   display: flex;
+  flex-direction: column;
 }
 
 #inputDetails{
 
   margin: auto;
+}
+
+// .fabric{
+//   display: none ;
+// }
+
+.auto{
+  display: none;
+}
+.agric  {
+  display: none;
+}
+
+.sales {
+  display: none;
+}
+
+.electronic{
+  display: none;
 }
