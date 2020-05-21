@@ -1,0 +1,33 @@
+<div class="jumbotron" >
+  <mat-card style="display: flex;">
+    <form class=" fabric" id="akube" (ngSubmit)="addAkube()" style="margin: auto;">
+      <mat-card-header>
+        <mat-card-title>Akube</mat-card-title>
+      </mat-card-header>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput required [(ngModel)]="akubename" name="akubename">
+      </mat-form-field>
+      <br>
+      <input type="file" (change)="uploadFile($event)">
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>size:</mat-label>
+        <input matInput required [(ngModel)]="akubesize" name="akubesize">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Price</mat-label>
+        <textarea matInput required [(ngModel)]="akubeprice" name="akubeprice"></textarea>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Location</mat-label>
+        <input matInput required [(ngModel)]="akubelocation" name="akubelocation" placeholder="Location">
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="accent" type="submit">submit</button>
+    </form>
+
+  </mat-card>
+</div>

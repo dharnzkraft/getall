@@ -1,3 +1,4 @@
+
 .background{
   display: flex;
   justify-content: space-around;
@@ -10,7 +11,7 @@
 .homeContent {
   flex-basis: 48%;
   margin: auto;
-  background: linear-gradient(#cc0066, #9933ff, #e6ccff);
+  // background: linear-gradient(#cc0066, #9933ff, #e6ccff);
   border-radius: 6px;
   box-shadow: #ccc 2px 3px 4px;
 }
@@ -35,7 +36,7 @@
 .img {
   width: 300px;
   height: 200px;
-  background: #ccc;
+  // background: #ccc;
   text-align: center;
   font-size: 60px;
   font-weight: bold;

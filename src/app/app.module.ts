@@ -23,6 +23,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import {MatChipsModule} from '@angular/material/chips';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 // import { MatOptionModule } from '@angular/material/option';
 
@@ -31,7 +32,11 @@ import {MatChipsModule} from '@angular/material/chips';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
-import { AngularFireStorageModule } from '@angular/fire/storage/angular-fire-storage';
+import { AngularFireStorageModule, BUCKET } from '@angular/fire/storage/angular-fire-storage';
+import { HttpClientModule } from '@angular/common/http';
+import { AboutComponent } from './about/about.component';
+import { AkubeComponent } from './akube/akube.component';
+import { AkubepostComponent } from './akubepost/akubepost.component';
 
 
 @NgModule({
@@ -41,7 +46,10 @@ import { AngularFireStorageModule } from '@angular/fire/storage/angular-fire-sto
     CategoriesComponent,
     PostComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    AboutComponent,
+    AkubeComponent,
+    AkubepostComponent
   ],
   imports: [
     BrowserModule,
@@ -63,9 +71,13 @@ import { AngularFireStorageModule } from '@angular/fire/storage/angular-fire-sto
     MatListModule,
     MatDividerModule,
     AngularFireStorageModule,
-    MatChipsModule
+    MatChipsModule,
+    MatExpansionModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: BUCKET, useValue: 'images' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

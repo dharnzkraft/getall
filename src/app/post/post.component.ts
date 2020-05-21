@@ -3,7 +3,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
-
+import { HttpClient } from '@angular/common/http';
 
 export class Item {
   body: string;
@@ -28,13 +28,19 @@ export class PostComponent implements OnInit {
   details: string;
   pic: any;
   show = false;
+  showAuto = false;
+  showElect = false;
+  showAgric = false;
+  showSale = false;
+  buttonDisabled: true;
 
   constructor(
     public db: AngularFireDatabaseModule,
     public afd: AngularFireDatabase,
-    private storage: AngularFireStorage) {
+    private storage: AngularFireStorage,
+    public http: HttpClient
+  ) {
     this.getDataFromFirebase();
-
 
     }
 
@@ -44,16 +50,16 @@ export class PostComponent implements OnInit {
     this.show = !this.show;
   }
   autoShow() {
-    this.show = !this.show;
+    this.showAuto = !this.showAuto;
   }
   electShow() {
-    this.show = !this.show;
+    this.showElect = !this.showElect;
   }
   agricShow() {
-    this.show = !this.show;
+    this.showAgric = !this.showAgric;
   }
   saleShow() {
-    this.show = !this.show;
+    this.showSale = !this.showSale;
   }
 
   addFabric() {
@@ -62,21 +68,85 @@ export class PostComponent implements OnInit {
        });
   }
 
+  addAuto() {
+    this.afd.list(`auto`).push({
+      autonames: this.name, autolocation: this.location, autodesc: this.description, autodetails: this.details,
+    });
+  }
+
+  addAgric() {
+    this.afd.list(`agric`).push({
+      agricnames: this.name, agriclocation: this.location, agricdesc: this.description, agricdetails: this.details,
+    });
+  }
+
+  addSale() {
+    this.afd.list(`sales`).push({
+      salesnames: this.name, saleslocation: this.location, salesdesc: this.description, salesdetails: this.details,
+    });
+  }
+
+  addElect() {
+    this.afd.list(`elects`).push({
+      electnames: this.name, electlocation: this.location, electdesc: this.description, electdetails: this.details,
+    });
+  }
+
   getDataFromFirebase() {
 
     this.afd.list(`fabrics`).valueChanges().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
+        this.Items = data;
+
+      }
+    );
+    this.afd.list(`auto`).valueChanges().subscribe(
+      data => {
+        // console.log(data);
+        this.Items = data;
+
+      }
+    );
+    this.afd.list(`agric`).valueChanges().subscribe(
+      data => {
+        // console.log(data);
+        this.Items = data;
+
+      }
+    );
+    this.afd.list(`elects`).valueChanges().subscribe(
+      data => {
+        // console.log(data);
+        this.Items = data;
+
+      }
+    );
+    this.afd.list(`sales`).valueChanges().subscribe(
+      data => {
+        // console.log(data);
         this.Items = data;
 
       }
     );
   }
 
+  // fileChanged(event) {
+  //   const files = event.target.files;
+
+  //   const data = new FormData();
+  //   data.append('file', files[0]);
+  //   data.append('UPLOADCARE_PUB_KEY', '6dc31454427afbc2e9c5');
+
+    // tslint:disable-next-line:no-shadowed-variable
+  //   this.http.post('https://upload.uploadcare.com/base/', data).subscribe(event => {
+  //     console.log(event);
+  //   });
+  // }
+
   uploadFile(event) {
     const file = event.target.files[0];
-    const filePath = 'Posts';
+    const filePath = '/';
     const task = this.storage.upload(filePath, file);
   }
-
 }
