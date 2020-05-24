@@ -10,19 +10,19 @@
 
           </mat-expansion-panel-header>
 
-            <button mat-flat-button color="accent" (click)="showAuto()">Auto Sales And Repairs</button>
+            <button style="width: 80%;" mat-flat-button color="accent" (click)="showAuto()">Auto Repairs</button>
             <br>
             <hr>
-            <button mat-flat-button color="accent" (click)="showElect()">Electronic Sales And Repairs</button>
+            <button style="width: 80%;" mat-flat-button color="accent" (click)="showElect()">Electronic And Electrical Repairs</button>
             <br>
             <hr>
-            <button mat-flat-button color="accent" (click)="showFarm()">Farm Produce And Livestocks</button>
+            <button style="width: 80%;" mat-flat-button color="accent" (click)="showFarm()">Plumbing And Carpentry</button>
             <br>
             <hr>
-            <button mat-flat-button color="accent" (click)="showSale()">Accessories Sales</button>
+            <button style="width: 80%;" mat-flat-button color="accent" (click)="showSale()">Accessories Sales</button>
             <br>
             <hr>
-            <button mat-flat-button color="accent" (click)="showFabric()">Clothing And Textile Materials</button>
+            <button style="width: 80%;" mat-flat-button color="accent" (click)="showFabric()">Other Services</button>
 
 
 
@@ -32,62 +32,83 @@
 
     </div>
     <div class="catContent">
-      <mat-card *ngFor='let Fabric of Fabrics' class="content" id="fabric">
-        <mat-card-header>
-          <mat-card-title>{{Fabric.fabricnames}}</mat-card-title>
-          <mat-card-subtitle>{{Fabric.fabriclocation}}</mat-card-subtitle>
-        </mat-card-header>
 
-        <mat-card-content>
-          <p>{{Fabric.fabricdesc}}</p>
-          <br> {{Fabric.fabricdetails}}
-        </mat-card-content>
-      </mat-card>
+      <div id="fabric">
 
-      <mat-card *ngFor='let Item of Items' class="content" id="sale">
-        <mat-card-header>
-          <mat-card-title>{{Item.salesnames}}</mat-card-title>
-          <mat-card-subtitle>{{Item.saleslocation}}</mat-card-subtitle>
-        </mat-card-header>
+        <mat-card *ngFor='let Fabric of Fabrics' class="content">
+          <mat-card-header>
+            <mat-card-title>{{Fabric.fabricnames}}</mat-card-title>
+            <mat-card-subtitle>LOCATION: {{Fabric.fabriclocation}}</mat-card-subtitle>
+          </mat-card-header>
 
-        <mat-card-content>
-          <p>{{Item.salesdesc}}</p>
-          <br> {{Item.salesdetails}}
-        </mat-card-content>
-      </mat-card>
-      <mat-card *ngFor='let Elect of Elects' class="content" id="elect">
-        <mat-card-header>
-          <mat-card-title>{{Elect.electnames}}</mat-card-title>
-          <mat-card-subtitle>{{Elect.electlocation}}</mat-card-subtitle>
-        </mat-card-header>
+          <mat-card-content>
+            {{Fabric.image}}
+            <p>DESCRIPTION: {{Fabric.fabricdesc}}</p>
+            <br>CONTACT: {{Fabric.fabricdetails}}
+          </mat-card-content>
+        </mat-card>
+      </div>
 
-        <mat-card-content>
-          <p>{{Elect.electdesc}}</p>
-          <br> {{Elect.electdetails}}
-        </mat-card-content>
-      </mat-card>
-      <mat-card *ngFor='let Auto of Autos' class="content" id="auto">
-        <mat-card-header>
-          <mat-card-title>{{Auto.autonames}}</mat-card-title>
-          <mat-card-subtitle>{{Auto.autolocation}}</mat-card-subtitle>
-        </mat-card-header>
+      <hr>
+      <div id="sale">
+        <mat-card *ngFor='let Item of Items' class="content">
+          <mat-card-header>
+            <mat-card-title>{{Item.salesnames}}</mat-card-title>
+            <mat-card-subtitle>{{Item.saleslocation}}</mat-card-subtitle>
+          </mat-card-header>
 
-        <mat-card-content>
-          <p>{{Auto.autodesc}}</p>
-          <br> {{Auto.autodetails}}
-        </mat-card-content>
-      </mat-card>
-      <mat-card *ngFor='let Agric of Agrics' class="content" id="agric">
-        <mat-card-header>
-          <mat-card-title>{{Agric.agricnames}}</mat-card-title>
-          <mat-card-subtitle>{{Agric.agriclocation}}</mat-card-subtitle>
-        </mat-card-header>
+          <mat-card-content>
+            <p>{{Item.salesdesc}}</p>
+            <br> {{Item.salesdetails}}
+          </mat-card-content>
+        </mat-card>
+      </div>
 
-        <mat-card-content>
-          <p>{{Agric.agricdesc}}</p>
-          <br> {{Agric.agricdetails}}
-        </mat-card-content>
-      </mat-card>
+      <hr>
+      <div id="elect">
+        <mat-card *ngFor='let Elect of Elects' class="content">
+          <mat-card-header>
+            <mat-card-title>{{Elect.electnames}}</mat-card-title>
+            <mat-card-subtitle>{{Elect.electlocation}}</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p>{{Elect.electdesc}}</p>
+            <br> {{Elect.electdetails}}
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <hr>
+      <div id="auto">
+        <mat-card *ngFor='let Auto of Autos' class="content">
+          <mat-card-header>
+            <mat-card-title>{{Auto.autonames}}</mat-card-title>
+            <mat-card-subtitle>{{Auto.autolocation}}</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p>{{Auto.autodesc}}</p>
+            <br> {{Auto.autodetails}}
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <hr>
+
+      <div id="agric">
+        <mat-card *ngFor='let Agric of Agrics' class="content">
+          <mat-card-header>
+            <mat-card-title>{{Agric.agricnames}}</mat-card-title>
+            <mat-card-subtitle>{{Agric.agriclocation}}</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p>{{Agric.agricdesc}}</p>
+            <br> {{Agric.agricdetails}}
+          </mat-card-content>
+        </mat-card>
+      </div>
+
 
 
     </div>

@@ -7,11 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  Glider: any;
+
   constructor() {
-    // tslint:disable-next-line:no-unused-expression
-    new this.Glider(document.querySelector('.glider'));
-   }
+  }
+
+  homeSlider = {items: 1, dots: true, nav: true};
 
   ngOnInit(): void {
   }

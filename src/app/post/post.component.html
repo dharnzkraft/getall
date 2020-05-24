@@ -1,42 +1,45 @@
 <div  style=" padding: 5px; border-radius: 0 0 5px 5px; color:#8c8c8c; background: white; text-align: center;  width: 100%;">
   <img src="../../assets/img/hiring.png" alt="banner" style="width: 100%; height: 30%; position: relative;" />
   <div class="content" style="border-radius: 15px 15px 0 0; padding: 10px; background: #4d0099; position: relative;">
-    <h1 style="color: white;">Select A Category To Begin Registration
-    </h1>
+    <h2  id="select" >Select A Category To Begin Registration
+    </h2>
+    <h2 id="fill" style="display: none;">Provide Accurate Details Below</h2>
     <div style=" width:100%; justify-content: space-around;">
-    <button mat-raised-button [disabled]="buttonDisabled" *ngIf="!buttonDisabled" (click)="buttonDisabled = true" color="accent" (click)="fabricShow()">Fabrics</button>
+    <button style="width: 80%;" mat-raised-button [disabled]="buttonDisabled" *ngIf="!buttonDisabled" (click)="buttonDisabled = true" color="accent" (click)="autoShow()">Auto Repair</button>
     <br>
     <br>
-    <button mat-raised-button [disabled]="buttonDisabled" *ngIf="!buttonDisabled" (click)="buttonDisabled = true" color="accent" (click)="autoShow()">Auto Repair And Sale</button>
+    <button style="width: 80%;" mat-raised-button [disabled]="buttonDisabled" *ngIf="!buttonDisabled" (click)="buttonDisabled = true" color="accent" (click)="electShow()">Electronics And Electrical Repairs</button>
     <br>
     <br>
-    <button mat-raised-button [disabled]="buttonDisabled" *ngIf="!buttonDisabled" (click)="buttonDisabled = true" color="accent" (click)="electShow()">Electronics And Electrical</button>
+    <button style="width: 80%;" mat-raised-button [disabled]="buttonDisabled" *ngIf="!buttonDisabled" (click)="buttonDisabled = true" color="accent" (click)="agricShow()">Plumbing And Carpentry</button>
     <br>
     <br>
-    <button mat-raised-button [disabled]="buttonDisabled" *ngIf="!buttonDisabled" (click)="buttonDisabled = true" color="accent" (click)="agricShow()">Agricultural Produce</button>
+    <button style="width: 80%;" mat-raised-button [disabled]="buttonDisabled" *ngIf="!buttonDisabled" (click)="buttonDisabled = true" color="accent" (click)="saleShow()">Sales</button>
     <br>
     <br>
-    <button mat-raised-button [disabled]="buttonDisabled" *ngIf="!buttonDisabled" (click)="buttonDisabled = true" color="accent" (click)="saleShow()">Sales</button>
+    <button style="width: 80%;" mat-raised-button [disabled]="buttonDisabled" *ngIf="!buttonDisabled" (click)="buttonDisabled = true" color="accent" (click)="fabricShow()">Other Services</button>
     </div>
   </div>
 </div>
 
 <mat-card class="well post" style=" padding: 10px;">
-  <!-- fabrics -->
-  <form class=" fabric" *ngIf="show"  id="inputDetails" (ngSubmit)="addFabric()">
+  <!-- Other Services -->
+  <form #f="ngForm" class="fabric" *ngIf="show"  id="inputDetails" (ngSubmit)="addFabric()">
     <mat-card-header>
-      <mat-card-title>FABRIC</mat-card-title>
+      <mat-card-title>Other Servies</mat-card-title>
     </mat-card-header>
     <mat-form-field appearance="outline">
       <mat-label>Name</mat-label>
-      <input matInput required [(ngModel)]="name" name="fabricnames">
+      <input matInput required [(ngModel)]="name" name="fabricnames" *ngIf="!imageURL" placeholder="e.g Catering Service, Laundry Services, e.t.c">
     </mat-form-field>
     <br>
-      <input type="file" (change)="uploadFile($event)">
+    <mat-form-field appearance="outline">
+      <input fileInput type="file" name="image" *ngIf="!imageURL" (change)="fileChanged($event)" required>
+    </mat-form-field>
     <br>
     <mat-form-field appearance="outline">
       <mat-label>Location Address</mat-label>
-      <input matInput required [(ngModel)]="location" name="fabriclocation">
+      <input matInput required [(ngModel)]="location" name="fabriclocation" placeholder="3, Crecsent close, Ifako, Lagos ">
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline">
@@ -51,19 +54,23 @@
     <br>
     <button  mat-raised-button color="accent" type="submit">submit</button>
   </form>
+  <mat-card *ngIf="imageURL">
+    <img src="https://ucarecdn.com/{{ imageURL }}/" />
+  </mat-card>
+
   <!-- Auto form -->
   <form class="auto" *ngIf="showAuto" id="inputDetails" (ngSubmit)="addAuto()">
     <mat-card-header>
-      <mat-card-title>AUTO REPAIRS & SALE</mat-card-title>
+      <mat-card-title>AUTO REPAIRS</mat-card-title>
     </mat-card-header>
     <mat-form-field appearance="outline">
       <mat-label>Name</mat-label>
-      <input matInput required [(ngModel)]="name" name="autonames">
+      <input matInput required [(ngModel)]="name" name="autonames" placeholder="e.g Mr Collins, Collins Benz Expert, etc...">
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline">
       <mat-label>Location Address</mat-label>
-      <input matInput required [(ngModel)]="location" name="autolocation">
+      <input matInput required [(ngModel)]="location" name="autolocation" placeholder="e.g 3, crescent close, Ifako, Lagos">
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline">
@@ -81,16 +88,16 @@
   <!-- Agric -->
   <form class=" agric" *ngIf="showAgric" id="inputDetails" (ngSubmit)="addAgric()">
     <mat-card-header>
-      <mat-card-title>AGRIC. & LIVESTOCKS</mat-card-title>
+      <mat-card-title>PLUMBING AND CARPENTRY</mat-card-title>
     </mat-card-header>
     <mat-form-field appearance="outline">
       <mat-label>Name</mat-label>
-      <input matInput required [(ngModel)]="name" name="agricnames">
+      <input matInput required [(ngModel)]="name" name="agricnames" placeholder="e.g Mr Collins or Collons Furniture">
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline">
       <mat-label>Location Address</mat-label>
-      <input matInput required [(ngModel)]="location" name="agriclocation">
+      <input matInput required [(ngModel)]="location" name="agriclocation" placeholder="e.g 3, crescent close, Ifako, Lagos">
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline">
@@ -112,12 +119,12 @@
     </mat-card-header>
     <mat-form-field appearance="outline">
       <mat-label>Name</mat-label>
-      <input matInput required [(ngModel)]="name" name="salenames">
+      <input matInput required [(ngModel)]="name" name="salenames" placeholder="Enter Name">
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline">
       <mat-label>Location Address</mat-label>
-      <input matInput required [(ngModel)]="location" name="salelocation">
+      <input matInput required [(ngModel)]="location" name="salelocation" placeholder="3, Crescent Close, Ifako, Lagos">
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline">
@@ -139,12 +146,12 @@
     </mat-card-header>
     <mat-form-field appearance="outline">
       <mat-label>Name</mat-label>
-      <input matInput required [(ngModel)]="name" name="electnames">
+      <input matInput required [(ngModel)]="name" name="electnames" placeholder="Mr Collins, Collins Electronics">
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline">
       <mat-label>Location Address</mat-label>
-      <input matInput required [(ngModel)]="location" name="electlocation">
+      <input matInput required [(ngModel)]="location" name="electlocation" placeholder="e.g 3, Crescent Close, Ifako, Lagos">
     </mat-form-field>
     <br>
     <mat-form-field appearance="outline">
@@ -160,6 +167,7 @@
     <button mat-raised-button color="accent" type="submit">submit</button>
   </form>
 </mat-card>
+
 <!-- <mat-card class="container" *ngFor='let Item of Items'>
   <mat-card-header>
     <mat-card-title>{{Item.names}}</mat-card-title>

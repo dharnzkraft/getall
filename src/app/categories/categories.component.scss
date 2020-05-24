@@ -12,21 +12,52 @@
 //   display: flex;
 // }
 .catContent{
-  flex: 4;
+
   padding: 20px;
   box-sizing: border-box;
 
 }
 .content{
   margin-top: 5px;
+
 }
+
+// #fabric {
+//   display: flex;
+//   justify-content: space-around;
+//   flex-wrap: wrap;
+// }
+
+// #sale {
+//   display: flex;
+//   justify-content: space-around;
+//   flex-wrap: wrap;
+// }
+
+// #elect {
+//   display: flex;
+//   justify-content: space-around;
+//   flex-wrap: wrap;
+// }
+
+// #auto {
+//   display: flex;
+//   justify-content: space-around;
+//   flex-wrap: wrap;
+// }
+// #agric {
+//   display: flex;
+//   justify-content: space-around;
+//   flex-wrap: wrap;
+// }
+
 
 @media screen and (min-width: 700px) {
 
   .catContent{
     display: flex;
     padding: 30px 0;
-    align-items: center;
+    // align-items: center;
     // flex-basis: 30% !important;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -34,13 +65,60 @@
 
   .content {
   flex-basis: 30%;
+
+  }
+
+  #fabric {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+#sale {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  flex-wrap: wrap;
+    margin-top: 5px;
+
+}
+
+#elect {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  flex-wrap: wrap;
+    margin-top: 5px;
+
+}
+
+#auto {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  flex-wrap: wrap;
+    margin-top: 5px;
+
+}
+#agric {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+
+  margin-top: 5px;
+}
+
+
 }
 @media screen and (max-width: 1024px) {
   .content{
     flex-basis: 40%;
   }
+
 }
-}
+
 .menulist{
 
 }

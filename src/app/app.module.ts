@@ -24,7 +24,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatDividerModule } from '@angular/material/divider';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
-
+import { OwlModule } from 'ngx-owl-carousel';
 // import { MatOptionModule } from '@angular/material/option';
 
 
@@ -73,7 +73,8 @@ import { AkubepostComponent } from './akubepost/akubepost.component';
     AngularFireStorageModule,
     MatChipsModule,
     MatExpansionModule,
-    HttpClientModule
+    HttpClientModule,
+    OwlModule
   ],
   providers: [
     { provide: BUCKET, useValue: 'images' }

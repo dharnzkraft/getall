@@ -9,7 +9,7 @@
         <input matInput required [(ngModel)]="akubename" name="akubename">
       </mat-form-field>
       <br>
-      <input type="file" (change)="uploadFile($event)">
+      <!-- <input type="file" (change)="uploadFile($event)"> -->
       <br>
       <mat-form-field appearance="outline">
         <mat-label>size:</mat-label>
@@ -29,5 +29,189 @@
       <button mat-raised-button color="accent" type="submit">submit</button>
     </form>
 
+  </mat-card>
+<h2>Verified Artisans</h2>
+  <div style=" padding: 5px; border-radius: 0 0 5px 5px; color:#8c8c8c; background: white; text-align: center;  width: 100%;">
+    <!-- <img src="../../assets/img/hiring.png" alt="banner" style="width: 100%; height: 30%; position: relative;" /> -->
+    <div class="content" style="border-radius: 15px 15px 0 0; padding: 10px; background: #4d0099; position: relative;">
+      <h2 id="select">Select A Category To Begin Registration
+      </h2>
+      <h2 id="fill" style="display: none;">Provide Accurate Details Below</h2>
+      <div style=" width:100%; justify-content: space-around;">
+        <button style="width: 80%;" mat-raised-button [disabled]="buttonDisabled" *ngIf="!buttonDisabled" (click)="buttonDisabled = true"
+          color="accent" (click)="autoShow()">Auto Repair</button>
+        <br>
+        <br>
+        <button style="width: 80%;" mat-raised-button [disabled]="buttonDisabled" *ngIf="!buttonDisabled" (click)="buttonDisabled = true"
+          color="accent" (click)="electShow()">Electronics And Electrical Repairs</button>
+        <br>
+        <br>
+        <button style="width: 80%;" mat-raised-button [disabled]="buttonDisabled" *ngIf="!buttonDisabled" (click)="buttonDisabled = true"
+          color="accent" (click)="agricShow()">Plumbing And Carpentry</button>
+        <br>
+        <br>
+        <button style="width: 80%;" mat-raised-button [disabled]="buttonDisabled" *ngIf="!buttonDisabled" (click)="buttonDisabled = true"
+          color="accent" (click)="saleShow()">Sales</button>
+        <br>
+        <br>
+        <button style="width: 80%;" mat-raised-button [disabled]="buttonDisabled" *ngIf="!buttonDisabled" (click)="buttonDisabled = true"
+          color="accent" (click)="fabricShow()">Other Services</button>
+      </div>
+    </div>
+  </div>
+
+  <mat-card class="well post" style=" padding: 10px;">
+    <!-- Other Services -->
+    <form class=" fabric" *ngIf="show" id="inputDetails" (ngSubmit)="addFabric()">
+      <mat-card-header>
+        <mat-card-title>Other Servies</mat-card-title>
+      </mat-card-header>
+      <br>
+      <input type="hidden" [(ngModel)]="verified" name="verified" value="verified">
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput required [(ngModel)]="name" name="fabricnames" placeholder="e.g Catering Service, Laundry Services, e.t.c">
+      </mat-form-field>
+      <br>
+      <input type="file" name="inputFile" required>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Location Address</mat-label>
+        <input matInput required [(ngModel)]="location" name="fabriclocation" placeholder="3, Crecsent close, Ifako, Lagos ">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Service Description</mat-label>
+        <textarea matInput required [(ngModel)]="description" name="fabricdesc"></textarea>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Contact Details</mat-label>
+        <input matInput required [(ngModel)]="details" name="fabricdetails" placeholder="Email or Phone Number">
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="accent" type="submit">submit</button>
+    </form>
+    <!-- Auto form -->
+    <form class="auto" *ngIf="showAuto" id="inputDetails" (ngSubmit)="addAuto()">
+      <mat-card-header>
+        <mat-card-title>AUTO REPAIRS</mat-card-title>
+      </mat-card-header>
+      <br>
+      <input type="hidden" [(ngModel)]="verified" name="verified" value="verified">
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput required [(ngModel)]="name" name="autonames" placeholder="e.g Mr Collins, Collins Benz Expert, etc...">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Location Address</mat-label>
+        <input matInput required [(ngModel)]="location" name="autolocation" placeholder="e.g 3, crescent close, Ifako, Lagos">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Service Description</mat-label>
+        <textarea matInput required [(ngModel)]="description" name="autodesc"></textarea>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Contact Details</mat-label>
+        <input matInput required [(ngModel)]="details" name="autodetails" placeholder="Email or Phone Number">
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="accent" type="submit">submit</button>
+    </form>
+    <!-- Agric -->
+    <form class=" agric" *ngIf="showAgric" id="inputDetails" (ngSubmit)="addAgric()">
+      <mat-card-header>
+        <mat-card-title>PLUMBING AND CARPENTRY</mat-card-title>
+      </mat-card-header>
+      <br>
+      <input type="hidden" [(ngModel)]="verified" name="verified" value="verified">
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput required [(ngModel)]="name" name="agricnames" placeholder="e.g Mr Collins or Collons Furniture">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Location Address</mat-label>
+        <input matInput required [(ngModel)]="location" name="agriclocation" placeholder="e.g 3, crescent close, Ifako, Lagos">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Service Description</mat-label>
+        <textarea matInput required [(ngModel)]="description" name="agricdesc"></textarea>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Contact Details</mat-label>
+        <input matInput required [(ngModel)]="details" name="agricdetails" placeholder="Email or Phone Number">
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="accent" type="submit">submit</button>
+    </form>
+    <!-- sales -->
+    <form class=" sales" *ngIf="showSale" id="inputDetails" (ngSubmit)="addSale()">
+      <mat-card-header>
+        <mat-card-title>GOODS SALES</mat-card-title>
+      </mat-card-header>
+      <br>
+      <input type="hidden" [(ngModel)]="verified" name="verified" value="verified">
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput required [(ngModel)]="name" name="salenames" placeholder="Enter Name">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Location Address</mat-label>
+        <input matInput required [(ngModel)]="location" name="salelocation" placeholder="3, Crescent Close, Ifako, Lagos">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Service Description</mat-label>
+        <textarea matInput required [(ngModel)]="description" name="saledesc"></textarea>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Contact Details</mat-label>
+        <input matInput required [(ngModel)]="details" name="saledetails" placeholder="Email or Phone Number">
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="accent" type="submit">submit</button>
+    </form>
+    <!-- electronic -->
+    <form class=" electronic" *ngIf="showElect" id="inputDetails" (ngSubmit)="addElect()">
+      <mat-card-header>
+        <mat-card-title>ELECTRONIC REPAIRS AND SALE</mat-card-title>
+      </mat-card-header>
+      <br>
+      <input type="hidden" [(ngModel)]="verified" name="verified" value="verified">
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput required [(ngModel)]="name" name="electnames" placeholder="Mr Collins, Collins Electronics">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Location Address</mat-label>
+        <input matInput required [(ngModel)]="location" name="electlocation" placeholder="e.g 3, Crescent Close, Ifako, Lagos">
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Service Description</mat-label>
+        <textarea matInput required [(ngModel)]="description" name="electdesc"></textarea>
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="outline">
+        <mat-label>Contact Details</mat-label>
+        <input matInput required [(ngModel)]="details" name="electdetails" placeholder="Email or Phone Number">
+      </mat-form-field>
+      <br>
+      <button mat-raised-button color="accent" type="submit">submit</button>
+    </form>
   </mat-card>
 </div>
