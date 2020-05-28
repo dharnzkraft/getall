@@ -174,55 +174,45 @@
         </div>
       </div>
     </div>
-
+    </div>
+</div>
 <br>
-<mat-card>
-  <h2 style="width: 100%; text-align: center;">Some Of Our Farm Produce</h2>
-  <div class="container farm">
 
-    <mat-card class="farmcard">
-      <mat-card-header>
-        <mat-card-title>Broiler</mat-card-title>
-        <mat-card-subtitle>Exotic Kaduna Breed</mat-card-subtitle>
-      </mat-card-header>
-      <img src="../../assets/img/farmtest.png" style="width: 100%; height: 300px;" />
-      <mat-card-content>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta natus odio distinctio ullam fugit non facere. Labore dolorem
-        deleniti asperiores aliquid aspernatur porro recusandae, rerum iusto exercitationem ab quisquam eius!
-        <br>
-        <button mat-raised-button color="primary">Contact Us</button>
-      </mat-card-content>
-    </mat-card>
 
-    <mat-card class="farmcard">
-      <mat-card-header>
-        <mat-card-title>Broiler</mat-card-title>
-        <mat-card-subtitle>Exotic Kaduna Breed</mat-card-subtitle>
-      </mat-card-header>
-      <img src="../../assets/img/farmtest.png" style="width: 100%; height: 300px;" />
-      <mat-card-content>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta natus odio distinctio ullam fugit non facere. Labore dolorem
-        deleniti asperiores aliquid aspernatur porro recusandae, rerum iusto exercitationem ab quisquam eius!
-        <br>
-        <button mat-raised-button color="primary">Contact Us</button>
-      </mat-card-content>
-    </mat-card>
+  <div class="container">
+    <mat-card-header><h2 style="width: 100%; text-align: center;">Checkout Our Store</h2></mat-card-header>
+      <div class="content">
 
-    <mat-card class="farmcard">
-      <mat-card-header>
-        <mat-card-title>Broiler</mat-card-title>
-        <mat-card-subtitle>Exotic Kaduna Breed</mat-card-subtitle>
-      </mat-card-header>
-      <img src="../../assets/img/farmtest.png" style="width: 100%; height: 300px;" />
-      <mat-card-content>
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta natus odio distinctio ullam fugit non facere. Labore dolorem
-        deleniti asperiores aliquid aspernatur porro recusandae, rerum iusto exercitationem ab quisquam eius!
-        <br>
-        <button mat-raised-button color="primary">Contact Us</button>
-      </mat-card-content>
-    </mat-card>
+        <div class="card bg-light mb-3" *ngFor="let akubeImageList of akubeImageLists" style=" display: flex; padding: 5px; border-radius: 10px;">
+          <div class="card-header" *ngIf="akubeImageList.imageUrl" style="display: flex;">
+            <img [src]="akubeImageList.imageUrl" width="100%" height="300px" style="margin: auto;">
+          </div>
+          <div class="card-body" style="margin: auto; align-content: center; text-align: center; align-items: center;">
+            <h2 class="card-title">{{akubeImageList.akubename}}</h2>
+            <hr>
+            <div style=" border-radius: 3px; padding: 5px;">
+              <h3 class="card-text">
+                Location: {{akubeImageList.location}}</h3>
+              <hr>
+              <h4 class="card-text">
+                Amount: #{{akubeImageList.price}}</h4>
+              <hr>
+              <!-- <h4 class="card-text">
+                          <i class='fa fa-phone'></i>: +234{{imageList.number}}</h4> -->
+            </div>
+            <br>
+            <div style="display: flex; justify-content: space-around; ">
+              <!-- <div id="verify" style="background: #400080; color: #ccc; padding: 5px; border-radius: 10%; width: 70px; height: 35px; text-align: center; ">{{imageList.verify}}</div> -->
+
+              <a mat-raised-button href="https://wa.me/{{akubeImageList.number}}?text=I'm%20interested%20in%20{{akubeImageList.akubename}}%20services%20....%20please"
+                style="background: #128c7e; height: 30px; ">
+                <i class="fa fa-whatsapp" style="font-size: 25px; color:white; height: 90%; "></i>
+              </a>
+            </div>
+
+          </div>
 
 
   </div>
 
-</mat-card>
+

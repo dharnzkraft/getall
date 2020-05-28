@@ -37,6 +37,7 @@ import { AboutComponent } from './about/about.component';
 import { AkubeComponent } from './akube/akube.component';
 import { AkubepostComponent } from './akubepost/akubepost.component';
 import { AkubeformComponent } from './akubeform/akubeform.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 // import { ImageService } from './image.service';
 // import { MatFileUploadModule } from 'angular-material-fileupload';
 
@@ -77,7 +78,9 @@ import { AkubeformComponent } from './akubeform/akubeform.component';
     MatExpansionModule,
     HttpClientModule,
     OwlModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ScrollingModule
+
   ],
   providers: [
     // { provide: BUCKET, useValue: 'images' }

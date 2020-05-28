@@ -13,7 +13,7 @@
           <form [formGroup]="formTemplate">
             <div class="form-group">
               <label>Name</label>
-              <input type="text" class="form-control" formControlName="name" placeholder="Mr Collins, Mr Collins & Sons....">
+              <input type="text" class="form-control" formControlName="name" maxlength="50" placeholder="Mr Collins, Mr Collins & Sons....">
               <div class="text-danger" *ngIf="isSubmitted && formControls.name.errors?.required">This Field is Required</div>
             </div>
             <div class="form-group">
@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
               <label>Service Description</label>
-              <input type="text" class="form-control" formControlName="description" placeholder="We are iTech company, we Offer home delivery......">
+              <input type="text" class="form-control" formControlName="description" maxlength="90" placeholder="We are iTech company, we Offer home delivery......">
               <div class="text-danger" *ngIf="isSubmitted && formControls.description.errors?.required">This Field is Required</div>
             </div>
             <div class="form-group">
@@ -41,7 +41,7 @@
             <br>
             <div class="form-group">
               <label>Phone Number</label>
-              <input class="form-control" type="number" formControlName="number" placeholder="8169xxx410">
+              <input class="form-control" type="number" formControlName="number" maxlength="10" placeholder="8169xxx410">
               <div class="text-danger" *ngIf="isSubmitted && formControls.number.errors?.required">This Field is Required</div>
             </div>
             <div class="form-group">
@@ -51,7 +51,7 @@
             </div>
             <div class="form-group">
               <label>Address</label>
-              <input class="form-control" formControlName="address" placeholder="3, Unity Close, Ifako Gbagada, Lagos">
+              <input class="form-control" formControlName="address" maxlength="50" placeholder="3, Unity Close, Ifako Gbagada, Lagos">
               <div class="text-danger" *ngIf="isSubmitted && formControls.address.errors?.required">This Field is Required</div>
             </div>
             <div class="form-group">

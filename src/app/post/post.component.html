@@ -13,12 +13,12 @@
         <form [formGroup]="formTemplate">
           <div class="form-group">
             <label>Name</label>
-            <input type="text" class="form-control" formControlName="name" placeholder="Mr Collins, Mr Collins & Sons....">
+            <input type="text" class="form-control" formControlName="name" maxlength="25" placeholder="Mr Collins, Mr Collins & Sons....">
             <div class="text-danger" *ngIf="isSubmitted && formControls.name.errors?.required">This Field is Required</div>
           </div>
           <div class="form-group">
             <select formControlName="category" class="formControl">
-              <option value="auto" selected>Auto Repair</option>
+              <option value="auto" default>Auto Repair</option>
               <option value="elect">Electrical & Electronics</option>
               <option value="plumb">Woodwork & Plumbing</option>
               <option value="sales">Sales</option>
@@ -26,13 +26,13 @@
 
             </select>
           </div>
-          <div class="form-group">
+          <div class="form-group" style="display: none;">
             <label>Verified?</label>
             <input type="text" class="form-control" formControlName="verify">
           </div>
           <div class="form-group">
             <label>Service Description</label>
-            <input type="text" class="form-control" formControlName="description" placeholder="We offer quality fashion design services.......">
+            <input type="text" class="form-control" formControlName="description" maxlength="80"  placeholder="We offer quality fashion design services.......">
             <div class="text-danger" *ngIf="isSubmitted && formControls.description.errors?.required">This Field is Required</div>
           </div>
           <div class="form-group">
@@ -47,13 +47,13 @@
           <br>
           <div class="form-group">
             <label>Phone Number</label>
-            <input class="form-control" type="number" formControlName="number" placeholder="8169xxx410">
+            <input class="form-control" type="number" formControlName="number" maxlength="10"  placeholder="e.g: 8169xxx410">
             <div class="text-danger" *ngIf="isSubmitted && formControls.number.errors?.required">This Field is Required</div>
           </div>
           <br><br>
           <div class="form-group">
             <label>Address</label>
-            <input class="form-control" formControlName="address" placeholder="3, Unity Close, Ifako Gbagada, Lagos">
+            <input class="form-control" formControlName="address" maxlength="50"  placeholder="3, Unity Close, Ifako Gbagada, Lagos">
             <div class="text-danger" *ngIf="isSubmitted && formControls.address.errors?.required">This Field is Required</div>
           </div>
 

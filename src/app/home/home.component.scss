@@ -139,22 +139,17 @@ i{
 
 // end of liquid button
 
-.farm {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-}
-
-.farmcard {
-
-  height: auto;
-  margin-bottom: 20px;
-}
-
 @media screen and (min-width: 700px) {
-  .farmcard{
-    flex-basis: 45%;
-    height: auto;
-    margin-bottom: 20px;
+
+  .content{
+    justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+
+  }
+
+  .card{
+    flex-basis: 48%;
   }
 }
+
