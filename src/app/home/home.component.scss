@@ -8,12 +8,22 @@
   align-items: center;
 }
 
+@media screen and (max-width: 500px) {
+
+  .background{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
+
 .homeContent {
   flex-basis: 48%;
   margin: auto;
   // background: linear-gradient(#cc0066, #9933ff, #e6ccff);
   border-radius: 6px;
   box-shadow: #ccc 2px 3px 4px;
+  margin-bottom: 10px;
 }
 
 .first {

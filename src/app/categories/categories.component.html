@@ -16,13 +16,16 @@
             <button style="width: 80%;" mat-flat-button color="accent" (click)="showElect()">Electronic And Electrical Repairs</button>
             <br>
             <hr>
-            <button style="width: 80%;" mat-flat-button color="accent" (click)="showFarm()">Plumbing And Carpentry</button>
+            <button style="width: 80%;" mat-flat-button color="accent" (click)="showPlum()">Plumbing And Carpentry</button>
             <br>
             <hr>
             <button style="width: 80%;" mat-flat-button color="accent" (click)="showSale()">Accessories Sales</button>
             <br>
             <hr>
-            <button style="width: 80%;" mat-flat-button color="accent" (click)="showFabric()">Other Services</button>
+            <button style="width: 80%;" mat-flat-button color="accent" (click)="showOther()">Other Services</button>
+            <br>
+            <hr>
+            <button style="width: 80%;" mat-flat-button color="accent" (click)="showVerify()">Verified Artisans</button>
 
 
 
@@ -31,86 +34,35 @@
       </mat-accordion>
 
     </div>
-    <div class="catContent">
 
-      <div id="fabric">
+<br>
+<div class="content" >
+      <div class="card bg-light mb-3" *ngFor="let imageList of imageLists" style=" display: flex; padding: 5px; border-radius: 10px;">
+        <div class="card-header" *ngIf="imageList.imageUrl" style="display: flex;">
+          <img [src]="imageList.imageUrl" width="100%" height="300px" style="margin: auto;">
+        </div>
+        <div class="card-body" style="margin: auto; align-content: center; text-align: center; align-items: center;">
+          <h2 class="card-title">{{imageList.name}}</h2>
+          <hr>
+          <div style=" border-radius: 3px; padding: 5px;">
+            <p class="card-text">{{imageList.description}}</p>
+            <h6 class="card-text"><i class='fa fa-map-marker'></i>: {{imageList.address}}</h6>
+            <h5 class="card-text"><i class='fa fa-phone'></i>: +234{{imageList.number}}</h5>
+          </div>
+          <br>
+          <div style="display: flex; justify-content: space-around; ">
+            <div id="verify" style="background: #400080; color: #ccc; padding: 5px; border-radius: 10%; width: 70px; height: 35px; text-align: center; ">{{imageList.verify}}</div>
+            &nbsp;&nbsp;
+            <a mat-raised-button href="https://wa.me/{{imageList.number}}?text=I'm%20interested%20in%20{{imageList.name}}%20services%20....%20please"
+              style="background: #128c7e;">
+              <i class="fa fa-whatsapp" style="font-size: 25px; color:white; "></i>
+            </a>
+          </div>
 
-        <mat-card *ngFor='let Fabric of Fabrics' class="content">
-          <mat-card-header>
-            <mat-card-title>{{Fabric.fabricnames}}</mat-card-title>
-            <mat-card-subtitle>LOCATION: {{Fabric.fabriclocation}}</mat-card-subtitle>
-          </mat-card-header>
+        </div>
 
-          <mat-card-content>
-            {{Fabric.image}}
-            <p>DESCRIPTION: {{Fabric.fabricdesc}}</p>
-            <br>CONTACT: {{Fabric.fabricdetails}}
-          </mat-card-content>
-        </mat-card>
       </div>
-
-      <hr>
-      <div id="sale">
-        <mat-card *ngFor='let Item of Items' class="content">
-          <mat-card-header>
-            <mat-card-title>{{Item.salesnames}}</mat-card-title>
-            <mat-card-subtitle>{{Item.saleslocation}}</mat-card-subtitle>
-          </mat-card-header>
-
-          <mat-card-content>
-            <p>{{Item.salesdesc}}</p>
-            <br> {{Item.salesdetails}}
-          </mat-card-content>
-        </mat-card>
-      </div>
-
-      <hr>
-      <div id="elect">
-        <mat-card *ngFor='let Elect of Elects' class="content">
-          <mat-card-header>
-            <mat-card-title>{{Elect.electnames}}</mat-card-title>
-            <mat-card-subtitle>{{Elect.electlocation}}</mat-card-subtitle>
-          </mat-card-header>
-
-          <mat-card-content>
-            <p>{{Elect.electdesc}}</p>
-            <br> {{Elect.electdetails}}
-          </mat-card-content>
-        </mat-card>
-      </div>
-
-      <hr>
-      <div id="auto">
-        <mat-card *ngFor='let Auto of Autos' class="content">
-          <mat-card-header>
-            <mat-card-title>{{Auto.autonames}}</mat-card-title>
-            <mat-card-subtitle>{{Auto.autolocation}}</mat-card-subtitle>
-          </mat-card-header>
-
-          <mat-card-content>
-            <p>{{Auto.autodesc}}</p>
-            <br> {{Auto.autodetails}}
-          </mat-card-content>
-        </mat-card>
-      </div>
-      <hr>
-
-      <div id="agric">
-        <mat-card *ngFor='let Agric of Agrics' class="content">
-          <mat-card-header>
-            <mat-card-title>{{Agric.agricnames}}</mat-card-title>
-            <mat-card-subtitle>{{Agric.agriclocation}}</mat-card-subtitle>
-          </mat-card-header>
-
-          <mat-card-content>
-            <p>{{Agric.agricdesc}}</p>
-            <br> {{Agric.agricdetails}}
-          </mat-card-content>
-        </mat-card>
-      </div>
-
-
-
-    </div>
-
 </div>
+
+
+

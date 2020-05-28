@@ -26,8 +26,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { OwlModule } from 'ngx-owl-carousel';
 // import { MatOptionModule } from '@angular/material/option';
-
-
+// import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 // firebase
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -37,7 +36,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AboutComponent } from './about/about.component';
 import { AkubeComponent } from './akube/akube.component';
 import { AkubepostComponent } from './akubepost/akubepost.component';
-
+import { AkubeformComponent } from './akubeform/akubeform.component';
+// import { ImageService } from './image.service';
+// import { MatFileUploadModule } from 'angular-material-fileupload';
 
 @NgModule({
   declarations: [
@@ -49,10 +50,11 @@ import { AkubepostComponent } from './akubepost/akubepost.component';
     FooterComponent,
     AboutComponent,
     AkubeComponent,
-    AkubepostComponent
+    AkubepostComponent,
+    AkubeformComponent
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
@@ -74,10 +76,11 @@ import { AkubepostComponent } from './akubepost/akubepost.component';
     MatChipsModule,
     MatExpansionModule,
     HttpClientModule,
-    OwlModule
+    OwlModule,
+    ReactiveFormsModule
   ],
   providers: [
-    { provide: BUCKET, useValue: 'images' }
+    // { provide: BUCKET, useValue: 'images' }
   ],
   bootstrap: [AppComponent]
 })

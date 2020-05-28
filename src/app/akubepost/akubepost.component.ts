@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
+import { FormGroup, FormControl, Validators, FormsModule } from '@angular/forms';
+import { finalize } from 'rxjs/operators';
+import { ImageService } from './../image.service';
+import { AkubeformComponent } from '../akubeform/akubeform.component';
 
 
 export class Item {
@@ -15,6 +19,21 @@ export class Item {
   styleUrls: ['./akubepost.component.scss']
 })
 export class AkubepostComponent implements OnInit {
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+  imgSrc: string;
+  selectedImage: any = null;
+  isSubmitted: boolean;
+
+  formTemplate = new FormGroup({
+    name: new FormControl('', Validators.required),
+    imageUrl: new FormControl('', Validators.required),
+    category: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+    address: new FormControl('', Validators.required),
+    number: new FormControl('', Validators.required),
+    verify: new FormControl('', Validators.required)
+  });
 
   Items: any;
   akubename: '';
@@ -22,97 +41,95 @@ export class AkubepostComponent implements OnInit {
   akubeprice: '';
   akubelocation: '';
   akube: Observable<any[]>;
-  show = false;
-  showAuto = false;
-  showElect = false;
-  showAgric = false;
-  showSale = false;
   name: string;
   location: string;
   description: string;
   details: string;
   verified: string;
   buttonDisabled: true;
+  imageURL: string;
+  selectedFile = null;
 
   constructor(
     public db: AngularFireDatabaseModule,
     public afd: AngularFireDatabase,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private service: ImageService
   ) {
-    this.getAkube();
+    // this.getAkube();
   }
 
   ngOnInit(): void {
+    this.resetForm();
   }
 
-  addAkube() {
-    this.afd.list(`akube`).push({
-      akubename: this.akubename, akubesize: this.akubesize, akubeprice: this.akubeprice, akubelocation: this.akubelocation,
+  onSubmit(formValue) {
+    this.isSubmitted = true;
+    if (this.formTemplate.valid) {
+      const filePath = `${formValue.category}/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
+      const fileRef = this.storage.ref(filePath);
+      this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            // tslint:disable-next-line:no-string-literal
+            formValue['imageUrl'] = url;
+            this.service.insertImageDetails(formValue);
+            this.resetForm();
+          });
+        })
+      ).subscribe();
+    }
+
+  }
+
+
+  resetForm() {
+    this.formTemplate.reset();
+    this.formTemplate.setValue({
+      name: '',
+      imageUrl: '',
+      category: '',
+      description: '',
+      address: '',
+      number: '',
+      verify: ''
     });
+    this.imgSrc = '../../ assets / img / download.png';
+    this.isSubmitted = false;
+    this.selectedImage = null;
   }
 
-  getAkube() {
-    this.afd.list(`akube`).valueChanges().subscribe(
-      data => {
-        // console.log(data);
-        this.Items = data;
-
-      }
-    );
+  get formControls() {
+    // tslint:disable-next-line:no-string-literal
+    return this.formTemplate['controls'];
   }
 
-  fabricShow() {
-    this.show = !this.show;
-    document.getElementById('fill').style.display = 'block';
-    document.getElementById('select').style.display = 'none';
+  showPreview(event: any) {
+    if (event.target.files && event.target.files[0]) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => this.imgSrc = e.target.result;
+      reader.readAsDataURL(event.target.files[0]);
+      this.selectedImage = event.target.files[0];
+    }
+    else {
+      this.imgSrc = '../../assets/img/download.png';
+      this.selectedImage = null;
+    }
   }
-  autoShow() {
-    this.showAuto = !this.showAuto;
-    document.getElementById('fill').style.display = 'block';
-    document.getElementById('select').style.display = 'none';
-  }
-  electShow() {
-    this.showElect = !this.showElect;
-    document.getElementById('fill').style.display = 'block';
-    document.getElementById('select').style.display = 'none';
-  }
-  agricShow() {
-    this.showAgric = !this.showAgric;
-    document.getElementById('fill').style.display = 'block';
-    document.getElementById('select').style.display = 'none';
-  }
-  saleShow() {
-    this.showSale = !this.showSale;
-    document.getElementById('fill').style.display = 'block';
-    document.getElementById('select').style.display = 'none';
-  }
+  // addAkube() {
+  //   this.afd.list(`akube`).push({
+  //     akubename: this.akubename, akubesize: this.akubesize, akubeprice: this.akubeprice, akubelocation: this.akubelocation,
+  //   });
+  // }
 
-  addFabric() {
-    this.afd.list(`fabrics`).push({
-      fabricnames: this.name, fabriclocation: this.location, fabricdesc: this.description, fabricdetails: this.details
-    });
-  }
-  addAuto() {
-    this.afd.list(`auto`).push({
-      autonames: this.name, autolocation: this.location, autodesc: this.description, autodetails: this.details,
-    });
-  }
+  // getAkube() {
+  //   this.afd.list(`akube`).valueChanges().subscribe(
+  //     data => {
+  //       // console.log(data);
+  //       this.Items = data;
 
-  addAgric() {
-    this.afd.list(`agric`).push({
-      agricnames: this.name, agriclocation: this.location, agricdesc: this.description, agricdetails: this.details,
-    });
-  }
+  //     }
+  //   );
+  // }
 
-  addSale() {
-    this.afd.list(`sales`).push({
-      salesnames: this.name, saleslocation: this.location, salesdesc: this.description, salesdetails: this.details,
-    });
-  }
-
-  addElect() {
-    this.afd.list(`elects`).push({
-      electnames: this.name, electlocation: this.location, electdesc: this.description, electdetails: this.details,
-    });
-  }
 }

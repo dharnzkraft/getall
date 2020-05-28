@@ -3,7 +3,6 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
-import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl, Validators, FormsModule } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 import { ImageService } from './../image.service';
@@ -11,58 +10,56 @@ import { ImageService } from './../image.service';
 export class Item {
   body: string;
 }
-declare var $;
-@Component({
-  selector: 'app-post',
-  templateUrl: './post.component.html',
-  styleUrls: ['./post.component.scss']
-})
-export class PostComponent implements OnInit {
 
+@Component({
+  selector: 'app-akubeform',
+  templateUrl: './akubeform.component.html',
+  styleUrls: ['./akubeform.component.scss']
+})
+export class AkubeformComponent implements OnInit {
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
   imgSrc: string;
   selectedImage: any = null;
   isSubmitted: boolean;
-  value: any;
 
   formTemplate = new FormGroup({
-    name: new FormControl('', Validators.required),
-    imageUrl: new FormControl('', Validators.required),
-    category: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
-    address: new FormControl('', Validators.required),
+    akubename: new FormControl('', Validators.required),
+    location: new FormControl('', Validators.required),
+    imageUrl1: new FormControl('', Validators.required),
     number: new FormControl('', Validators.required),
-    verify: new FormControl({ value: 'Not Verified', disabled: true})
-
+    // imageUrl2: new FormControl('', Validators.required),
+    // imageUrl3: new FormControl('', Validators.required),
+    price: new FormControl('', Validators.required),
+    category: new FormControl('', Validators.required)
   });
 
+
   Items: any;
+  akubename: '';
+  akubesize: '';
+  akubeprice: '';
+  akubelocation: '';
+  akube: Observable<any[]>;
   name: string;
   location: string;
   description: string;
   details: string;
-  pic: any;
+  verified: string;
   buttonDisabled: true;
   imageURL: string;
   selectedFile = null;
-  verified: string;
-  uploadPercent: any;
 
   constructor(
     public db: AngularFireDatabaseModule,
     public afd: AngularFireDatabase,
     private storage: AngularFireStorage,
-    public http: HttpClient,
     private service: ImageService
-  ) {
-
-    }
+  ) { }
 
   ngOnInit(): void {
     this.resetForm();
   }
-
 
   onSubmit(formValue) {
     this.isSubmitted = true;
@@ -74,7 +71,7 @@ export class PostComponent implements OnInit {
           fileRef.getDownloadURL().subscribe((url) => {
             // tslint:disable-next-line:no-string-literal
             formValue['imageUrl'] = url;
-            this.service.insertImageDetails(formValue);
+            this.service.insertAkubeImageDetails(formValue);
             this.resetForm();
           });
         })
@@ -83,29 +80,26 @@ export class PostComponent implements OnInit {
 
   }
 
-
   resetForm() {
     this.formTemplate.reset();
     this.formTemplate.setValue({
-      name: '',
-      imageUrl: '',
+      akubename: '',
+      location: '',
+      imageUrl1: '',
       category: '',
-      description: '',
-      address: '',
       number: '',
-      verify: ({ value: 'Not Verified', disabled: true })
+      // imageUrl2: '',
+      // imageUrl3: '',
+      price: ''
     });
-    this.imgSrc = '../../ assets / img / download.png';
     this.isSubmitted = false;
     this.selectedImage = null;
   }
 
-get formControls() {
+  get formControls() {
     // tslint:disable-next-line:no-string-literal
     return this.formTemplate['controls'];
   }
-
-
 
   showPreview(event: any) {
     if (event.target.files && event.target.files[0]) {

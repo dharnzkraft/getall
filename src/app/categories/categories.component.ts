@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { Observable } from 'rxjs';
+import { AngularFireDatabase, AngularFireAction } from '@angular/fire/database';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
+import { ImageService } from './../image.service';
+import { switchMap } from 'rxjs/operators';
 
 export class Item {
   body: string;
 }
-
-
 
 @Component({
   selector: 'app-categories',
@@ -34,101 +34,96 @@ export class CategoriesComponent implements OnInit {
   Elects: any;
   description: string;
   details: string;
-  constructor(public db: AngularFireDatabaseModule, public afd: AngularFireDatabase) {
+  imageList: any[];
+  imageLists: any;
+  rowIndexArray: any[];
+  imageDetails$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
+  category$: BehaviorSubject<string|null>;
+  category: any;
+
+
+
+
+  constructor(
+    public db: AngularFireDatabaseModule,
+    public afd: AngularFireDatabase,
+    private service: ImageService
+
+  ) {
     this.getDataFromFirebase();
-    this.getData2();
-    this.getData3();
-    this.getData4();
-    this.getData5();
+    // this.category$ = new BehaviorSubject(null);
+    // this.imageDetails$ = this.category$.pipe(switchMap(category =>
+    //   afd.list('/imageDetails', ref =>
+    //     category ? ref.orderByChild('category').equalTo(category) : ref
+    //   ).snapshotChanges()
+    // ));
+
    }
 
-  ngOnInit(): void {
+  ngOnInit() {
+
   }
 
   getDataFromFirebase() {
 
-    this.afd.list(`fabrics`).valueChanges().subscribe(
+    this.afd.list(`imageDetails`).valueChanges().subscribe(
       data => {
         console.log(data);
-        this.Fabrics = data;
-
-      }
-    );
-  }
-  getData2() {
-    this.afd.list(`auto`).valueChanges().subscribe(
-      data => {
-        console.log(data);
-        this.Autos = data;
-
-      }
-    );
-
-  }
-
-  getData3() {
-    this.afd.list(`agric`).valueChanges().subscribe(
-      data => {
-        console.log(data);
-        this.Agrics = data;
+        this.imageLists = data;
 
       }
     );
   }
 
-  getData4() {
-    this.afd.list(`sales`).valueChanges().subscribe(
-      data => {
-        console.log(data);
-        this.Items = data;
 
-      }
-    );
-  }
 
-  getData5() {
-    this.afd.list(`elects`).valueChanges().subscribe(
-      data => {
-        console.log(data);
-        this.Elects = data;
-
-      }
-    );
-  }
 
   showAuto() {
-    document.getElementById('auto').style.display = 'block';
-    document.getElementById('agric').style.display = 'none';
-    document.getElementById('sale').style.display = 'none';
-    document.getElementById('elect').style.display = 'none';
-    document.getElementById('fabric').style.display = 'none';
+    this.afd.list('/imageDetails', ref => ref.orderByChild('category').equalTo('auto')).valueChanges().subscribe(
+      data => {
+        console.log(data);
+        this.imageLists = data;
+      }
+    );
   }
-  showFarm() {
-    document.getElementById('agric').style.display = 'block';
-    document.getElementById('auto').style.display = 'none';
-    document.getElementById('sale').style.display = 'none';
-    document.getElementById('elect').style.display = 'none';
-    document.getElementById('fabric').style.display = 'none';
+  showVerify() {
+    this.afd.list('/imageDetails', ref => ref.orderByChild('verify').equalTo('verified')).valueChanges().subscribe(
+      data => {
+        console.log(data);
+        this.imageLists = data;
+      }
+    );
+  }
+  showPlum() {
+    this.afd.list('/imageDetails', ref => ref.orderByChild('category').equalTo('plumb')).valueChanges().subscribe(
+      data => {
+        console.log(data);
+        this.imageLists = data;
+      }
+    );
   }
   showSale() {
-    document.getElementById('sale').style.display = 'block';
-    document.getElementById('agric').style.display = 'none';
-    document.getElementById('auto').style.display = 'none';
-    document.getElementById('elect').style.display = 'none';
-    document.getElementById('fabric').style.display = 'none';
+    this.afd.list('/imageDetails', ref => ref.orderByChild('category').equalTo('sales')).valueChanges().subscribe(
+      data => {
+        console.log(data);
+        this.imageLists = data;
+      }
+    );
   }
   showElect() {
-    document.getElementById('elect').style.display = 'block';
-    document.getElementById('agric').style.display = 'none';
-    document.getElementById('sale').style.display = 'none';
-    document.getElementById('auto').style.display = 'none';
-    document.getElementById('fabric').style.display = 'none';
+    this.afd.list('/imageDetails', ref => ref.orderByChild('category').equalTo('elect')).valueChanges().subscribe(
+      data => {
+        console.log(data);
+        this.imageLists = data;
+      }
+    );
   }
-  showFabric() {
-    document.getElementById('fabric').style.display = 'block';
-    document.getElementById('agric').style.display = 'none';
-    document.getElementById('sale').style.display = 'none';
-    document.getElementById('elect').style.display = 'none';
-    document.getElementById('auto').style.display = 'none';
+  showOther() {
+    this.afd.list('/imageDetails', ref => ref.orderByChild('category').equalTo('other')).valueChanges().subscribe(
+      data => {
+        console.log(data);
+        this.imageLists = data;
+      }
+    );
   }
 }

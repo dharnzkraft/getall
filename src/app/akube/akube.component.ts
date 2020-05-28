@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { AngularFireDatabase } from '@angular/fire/database';
-import { Observable } from 'rxjs';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireDatabase, AngularFireAction } from '@angular/fire/database';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
+import { ImageService } from './../image.service';
+import { switchMap } from 'rxjs/operators';
 
 export class Item {
   body: string;
@@ -15,17 +16,36 @@ export class Item {
 })
 export class AkubeComponent implements OnInit {
 
+  Posts: Observable<any[]>;
+  Item: string;
+  Auto: string;
+  Agric: string;
+  Fabric: string;
+  Elect: string;
+  sales: Observable<any[]>;
+  elects: Observable<any[]>;
+  agric: Observable<any[]>;
+  auto: Observable<any[]>;
   Items: any;
-  akubename: '';
-  akubesize: '';
-  akubeprice: '';
-  akubelocation: '';
-  akube: Observable<any[]>;
+  Autos: any;
+  Agrics: any;
+  name: string;
+  Fabrics: any;
+  location: string;
+  Elects: any;
+  description: string;
+  details: string;
+  imageList: any[];
+  akubeImageLists: any;
+  rowIndexArray: any[];
+  akubeImageDetails$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
+  category$: BehaviorSubject<string | null>;
+  category: any;
 
   constructor(
     public db: AngularFireDatabaseModule,
     public afd: AngularFireDatabase,
-    private storage: AngularFireStorage
+    private service: ImageService
   ) {
     this.getAkube();
   }
@@ -34,11 +54,10 @@ export class AkubeComponent implements OnInit {
   }
 
   getAkube() {
-    this.afd.list(`akube`).valueChanges().subscribe(
+    this.afd.list('/akubeImageDetails', ref => ref.orderByChild('category').equalTo('akube')).valueChanges().subscribe(
       data => {
-        // console.log(data);
-        this.Items = data;
-
+        console.log(data);
+        this.akubeImageLists = data;
       }
     );
   }

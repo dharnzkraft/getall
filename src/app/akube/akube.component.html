@@ -1,14 +1,37 @@
 
-<div class="jumbotron" id="card">
-  <h2>Welcome To Our Akube Store</h2>
-  <mat-card class="container" *ngFor='let Item of Items'>
-    <mat-card-header>
-      <mat-card-title>{{Item.akubename}}</mat-card-title>
-      <mat-card-subtitle>{{Item.akubesize}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>{{Item.akubelocation}}</p>
-      <br> {{Item.akubeprice}}
-    </mat-card-content>
-  </mat-card>
+<div class="jumbotron">
+  <div class="content">
+
+      <div class="card bg-light mb-3" *ngFor="let akubeImageList of akubeImageLists" style=" display: flex; padding: 5px; border-radius: 10px;">
+        <div class="card-header" *ngIf="akubeImageList.imageUrl" style="display: flex;">
+          <img [src]="akubeImageList.imageUrl" width="100%" height="300px" style="margin: auto;">
+        </div>
+        <div class="card-body" style="margin: auto; align-content: center; text-align: center; align-items: center;">
+          <h2 class="card-title">{{akubeImageList.akubename}}</h2>
+          <hr>
+          <div style=" border-radius: 3px; padding: 5px;">
+            <h3 class="card-text">
+              <i class="fa fa-map-marker"></i> {{akubeImageList.location}}</h3>
+            <hr>
+            <h4 class="card-text">
+              <i class='fa fa-money'></i> #{{akubeImageList.price}}</h4>
+            <hr>
+            <!-- <h4 class="card-text">
+                <i class='fa fa-phone'></i>: +234{{imageList.number}}</h4> -->
+          </div>
+          <br>
+          <div style="display: flex; justify-content: space-around; ">
+            <!-- <div id="verify" style="background: #400080; color: #ccc; padding: 5px; border-radius: 10%; width: 70px; height: 35px; text-align: center; ">{{imageList.verify}}</div> -->
+            &nbsp;&nbsp;
+            <a mat-raised-button href="https://wa.me/{{akubeImageList.number}}?text=I'm%20interested%20in%20{{akubeImageList.akubename}}%20services%20....%20please"
+              style="background: #128c7e;">
+              <i class="fa fa-whatsapp" style="font-size: 25px; color:white; "></i>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+  </div>
 </div>
