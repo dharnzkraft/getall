@@ -33,7 +33,7 @@ export class PostComponent implements OnInit {
     description: new FormControl('', Validators.required),
     address: new FormControl('', Validators.required),
     number: new FormControl('', Validators.required),
-    verify: new FormControl({ value: 'Not Verified', disabled: true})
+    verify: new FormControl()
 
   });
 
@@ -93,7 +93,7 @@ export class PostComponent implements OnInit {
       description: '',
       address: '',
       number: '',
-      verify: ({ value: 'Not Verified', disabled: true })
+      verify: ('')
     });
     this.imgSrc = '../../ assets / img / download.png';
     this.isSubmitted = false;

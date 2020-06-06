@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
   Elects: any;
   description: string;
   details: string;
-  imageList: any[];
+  imageLists: any[];
   akubeImageLists: any;
   rowIndexArray: any[];
   akubeImageDetails$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
@@ -47,6 +47,7 @@ export class HomeComponent implements OnInit {
     private service: ImageService
   ) {
     this.getAkube();
+    this.showVerify();
   }
 
   homeSlider = {items: 1, dots: true, nav: true};
@@ -56,10 +57,19 @@ export class HomeComponent implements OnInit {
 
 
   getAkube() {
-    this.afd.list('/akubeImageDetails', ref => ref.orderByChild('category').limitToLast(5).equalTo('akube')).valueChanges().subscribe(
+    this.afd.list('/akubeImageDetails', ref => ref.orderByChild('category').limitToLast(4).equalTo('akube')).valueChanges().subscribe(
       data => {
         console.log(data);
         this.akubeImageLists = data;
+      }
+    );
+  }
+
+  showVerify() {
+    this.afd.list('/imageDetails', ref => ref.orderByChild('verify').limitToLast(4).equalTo('verified')).valueChanges().subscribe(
+      data => {
+        console.log(data);
+        this.imageLists = data;
       }
     );
   }

@@ -8,12 +8,10 @@ export class ImageService {
   imageDetailList: AngularFireList<any>;
   akubeImageDetailList: AngularFireList<any>;
   homepage1: AngularFireList<any>;
+  currentImageList: any;
+  currentimageDetails: any;
 
   constructor(private afd: AngularFireDatabase) { }
-
-  getImageDetailList() {
-    this.imageDetailList = this.afd.list('imageDetails');
-  }
 
   insertImageDetails(imageDetails) {
     this.afd.list('imageDetails').push(imageDetails);

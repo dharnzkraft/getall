@@ -1,6 +1,9 @@
 <mat-toolbar color="primary">
 
-  <mat-icon>D</mat-icon>
+  <div>
+    <!-- <mat-icon>D</mat-icon> -->
+    <img src="../../assets/img/logo.png" alt="logo" width="30%" height="60%" >
+  </div>
 
   <div class="spacer"></div>
   <div class="menubar">
@@ -22,11 +25,14 @@
       <mat-icon>menu</mat-icon>
     </button>
     <mat-menu #appMenu="matMenu">
-      <button mat-menu-item routerLink="/">Home</button>
-      <button mat-menu-item routerLink="categories">Categories</button>
-      <button mat-menu-item routerLink="akube">Our Akube Store</button>
-      <button mat-menu-item routerLink="post">Offer Your Services</button>
-      <!-- <button mat-menu-item routerLink="about">About</button> -->
+      <mat-nav-list>
+        <button mat-menu-item routerLink="/" routerLinkActive="active-list-item">Home</button>
+        <button mat-menu-item routerLink="categories" routerLinkActive="active-list-item">Categories</button>
+        <button mat-menu-item routerLink="akube" routerLinkActive="active-list-item">Our Akube Store</button>
+        <button mat-menu-item routerLink="post" routerLinkActive="active-list-item">Offer Your Services</button>
+        <!-- <button mat-menu-item routerLink="about">About</button> -->
+      </mat-nav-list>
+
     </mat-menu>
 
   </div>

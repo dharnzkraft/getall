@@ -8,18 +8,18 @@
       <div class="card-body">
         <form [formGroup]="formTemplate">
           <div class="form-group">
-            <label>Name</label>
-            <input type="text" class="form-control" formControlName="akubename" maxlength="25" placeholder="Name Of Product">
+            <label>Name <i style="font-size: 10px; color: red;">(minimum of 20 characters)</i></label>
+            <input type="text" class="form-control" formControlName="akubename" maxlength="25" minlength="20" placeholder="Name Of Product">
             <div class="text-danger" *ngIf="isSubmitted && formControls.akubename.errors?.required">This Field is Required</div>
           </div>
 
           <div class="form-group">
-            <label>Location</label>
-            <input type="text" class="form-control" maxlength="50" formControlName="location" placeholder="Lagos">
+            <label>Location <i style="font-size: 10px; color: red;">(minimum of 40 characters)</i></label>
+            <input type="text" class="form-control" maxlength="60" minlength="40"formControlName="location" placeholder="Lagos">
             <div class="text-danger" *ngIf="isSubmitted && formControls.location.errors?.required">This Field is Required</div>
           </div>
           <div class="form-group">
-            <label>Category</label>
+            <label>Category </label>
             <input type="text" class="form-control" formControlName="category" placeholder="akube" value="akube">
             <div class="text-danger" *ngIf="isSubmitted && formControls.category.errors?.required">This Field is Required</div>
           </div>
@@ -29,8 +29,8 @@
             <div class="text-danger" *ngIf="isSubmitted && formControls.imageUrl1.errors?.required">This Field is Required</div>
           </div>
           <div class="form-group">
-            <label>Phone Number</label>
-            <input class="form-control" type="number" formControlName="number" maxlength="10" placeholder="8169xxx410">
+            <label>Phone Number <i style="font-size: 10px; color: red;">(minimum of 10 characters)</i></label>
+            <input class="form-control" type="number" formControlName="number" maxlength="11" placeholder="08169xxx410">
             <div class="text-danger" *ngIf="isSubmitted && formControls.number.errors?.required">This Field is Required</div>
           </div>
           <!-- <div class="form-group">

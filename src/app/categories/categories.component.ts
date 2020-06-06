@@ -4,6 +4,7 @@ import { AngularFireDatabase, AngularFireAction } from '@angular/fire/database';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { ImageService } from './../image.service';
 import { switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 export class Item {
   body: string;
@@ -40,6 +41,9 @@ export class CategoriesComponent implements OnInit {
   imageDetails$: Observable<AngularFireAction<firebase.database.DataSnapshot>[]>;
   category$: BehaviorSubject<string|null>;
   category: any;
+  page = 1;
+  query = [] as any;
+  panelOpenState = false;
 
 
 
@@ -47,7 +51,8 @@ export class CategoriesComponent implements OnInit {
   constructor(
     public db: AngularFireDatabaseModule,
     public afd: AngularFireDatabase,
-    private service: ImageService
+    private service: ImageService,
+    private router: Router
 
   ) {
     this.getDataFromFirebase();
@@ -61,8 +66,12 @@ export class CategoriesComponent implements OnInit {
    }
 
   ngOnInit() {
-
   }
+
+  // onGoToDetailsPage(imageList) {
+  //   this.service.currentImageList = imageList;
+  //   this.router.navigate(['/details']);
+  // }
 
   getDataFromFirebase() {
 
@@ -74,7 +83,19 @@ export class CategoriesComponent implements OnInit {
       }
     );
   }
+togglePanel() {
+    this.panelOpenState = !this.panelOpenState;
+}
 
+  onScroll() {
+    this.page++;
+    if (!this.query.search) {
+      this.getDataFromFirebase();
+    }
+    // else {
+    //   this.requestSearchPhotos();
+    // }
+  }
 
 
 
@@ -85,6 +106,9 @@ export class CategoriesComponent implements OnInit {
         this.imageLists = data;
       }
     );
+    this.panelOpenState = !this.panelOpenState;
+
+
   }
   showVerify() {
     this.afd.list('/imageDetails', ref => ref.orderByChild('verify').equalTo('verified')).valueChanges().subscribe(
@@ -93,6 +117,8 @@ export class CategoriesComponent implements OnInit {
         this.imageLists = data;
       }
     );
+    this.panelOpenState = !this.panelOpenState;
+
   }
   showPlum() {
     this.afd.list('/imageDetails', ref => ref.orderByChild('category').equalTo('plumb')).valueChanges().subscribe(
@@ -101,6 +127,8 @@ export class CategoriesComponent implements OnInit {
         this.imageLists = data;
       }
     );
+    this.panelOpenState = !this.panelOpenState;
+
   }
   showSale() {
     this.afd.list('/imageDetails', ref => ref.orderByChild('category').equalTo('sales')).valueChanges().subscribe(
@@ -109,6 +137,8 @@ export class CategoriesComponent implements OnInit {
         this.imageLists = data;
       }
     );
+    this.panelOpenState = !this.panelOpenState;
+
   }
   showElect() {
     this.afd.list('/imageDetails', ref => ref.orderByChild('category').equalTo('elect')).valueChanges().subscribe(
@@ -117,6 +147,8 @@ export class CategoriesComponent implements OnInit {
         this.imageLists = data;
       }
     );
+    this.panelOpenState = !this.panelOpenState;
+
   }
   showOther() {
     this.afd.list('/imageDetails', ref => ref.orderByChild('category').equalTo('other')).valueChanges().subscribe(
@@ -125,5 +157,7 @@ export class CategoriesComponent implements OnInit {
         this.imageLists = data;
       }
     );
+    this.panelOpenState = !this.panelOpenState;
+
   }
 }

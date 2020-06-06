@@ -40,6 +40,8 @@ import { AkubeformComponent } from './akubeform/akubeform.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 // import { ImageService } from './image.service';
 // import { MatFileUploadModule } from 'angular-material-fileupload';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     AboutComponent,
     AkubeComponent,
     AkubepostComponent,
-    AkubeformComponent
+    AkubeformComponent,
+    DetailsComponent
   ],
   imports: [
   BrowserModule,
@@ -79,7 +82,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     HttpClientModule,
     OwlModule,
     ReactiveFormsModule,
-    ScrollingModule
+    ScrollingModule,
+    InfiniteScrollModule
 
   ],
   providers: [

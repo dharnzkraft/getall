@@ -81,8 +81,6 @@ export class AkubepostComponent implements OnInit {
     }
 
   }
-
-
   resetForm() {
     this.formTemplate.reset();
     this.formTemplate.setValue({
