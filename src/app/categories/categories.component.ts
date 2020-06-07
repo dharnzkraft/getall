@@ -68,6 +68,9 @@ export class CategoriesComponent implements OnInit {
   ngOnInit() {
   }
 
+  scrollToTop(el) {
+  el.scrollTop = 0;
+  }
   // onGoToDetailsPage(imageList) {
   //   this.service.currentImageList = imageList;
   //   this.router.navigate(['/details']);

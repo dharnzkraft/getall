@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" #container>
 
     <div class=" menu">
       <mat-accordion>
@@ -63,7 +63,7 @@
             <div style="display: flex; justify-content: space-around; ">
               <div id="verify" style="background: #400080; color: #ccc; padding: 5px; border-radius: 10%; width: 70px; height: 35px; text-align: center; text-transform: uppercase; font-family: serif; font-size: 10px;">{{imageList.verify}}</div>
               &nbsp;&nbsp;
-              <a mat-raised-button href="https://wa.me/+234{{imageList.number}}?text=I'm%20interested%20in%20{{imageList.name}}%20services%20....%20please"
+              <a mat-raised-button href="https://wa.me/0{{imageList.number}}?text=I'm%20interested%20in%20{{imageList.name}}%20services%20....%20please"
                 style="background: #128c7e;">
                 <i class="fa fa-whatsapp" style="font-size: 25px; color:white; "></i>
               </a>
@@ -75,6 +75,8 @@
 
       </div>
 </div>
+<button (click)="scrollToTop(container)">scroll to top</button>
+
 
 
 

@@ -15,48 +15,80 @@
 
 <hr>
 
-<mat-card>
-  <h2 style=" padding: 5px; text-align: center; border-radius: 10px;">Our Mission</h2>
-  <div class="background" style="text-align: center;">
-    <mat-card class="homeContent">
-      <mat-card-header >
-        <mat-card-title></mat-card-title>
 
-        <mat-card-subtitle><b></b></mat-card-subtitle>
-      </mat-card-header>
-      <hr>
+  <h3 style="width: 100%; text-align: center;">
+    <b>What Are You Interested In ?</b>
 
-      <mat-card-content>This is a platform that brings service finders to service providers. It bridges
-        the gap of a service finder moving from one place to another in search of a provider. The platform as
-         of now is free to all and sundry and for quality assurance purposes, we'll like you to know that we are
-         ONLY responsible for our trusted,
-        vetted and verified artisans as they have been trained and are adequately equipped to serve you.
+  </h3>
+<br>
+<div class="container" id="boxContainer" style="display: flex; justify-content: space-around;">
 
-      </mat-card-content>
 
-    </mat-card>
-    <!-- <mat-card class="homeContent">
-      <mat-card-header>
-        <mat-card-title></mat-card-title>
-        <mat-card-subtitle><b>We encourage </b></mat-card-subtitle>
-      </mat-card-header>
-      <hr>
-      <mat-card-content>
-        Feel Free to Adertise Your Service(s) and Goods on Our Platform for Free and Stand The Chance Of Meeting Your Potential Patroniser At No Cost.
-      </mat-card-content>
+      <div class="box" style="background-image: url(../../assets/img/carpenter.jpg); background-repeat: no-repeat; background-size: cover;">
+        <div class="overlay" style="background:rgba(0,0,0,.2); z-index: 1; height: 100%; padding: 10px;">
+          <h3 style="color: white; margin: 0 0 3px 0; font-family: 'Times New Roman', Times, serif; line-height: 1.4em; font-weight: 800; font-size: 25px;">Carpenter</h3>
+          <div class="line" style="height: 2px; width: 40%; content: ''; display: block; background-color: #fff; margin-top: 10px;"></div>
+          <button mat-stroked-button color="accent" routerLink="categories"><mat-icon>sort</mat-icon>VIEW</button>
 
-    </mat-card> -->
+        </div>
+      </div>
 
 
 
 
-  </div>
+    &nbsp;
+
+    <div class="box" id="mecho" style="background-image: url(../../assets/img/mechanic.jpg); background-repeat: no-repeat;">
+      <div class="overlay" style="background:rgba(0,0,0,.2); z-index: 1; height: 100%; padding: 10px;">
+        <h3 style="color: white; margin: 0 0 3px 0; font-family: 'Times New Roman', Times, serif; line-height: 1.4em; font-weight: 800; font-size: 25px;">Auto Repair</h3>
+        <div class="line" style="height: 2px; width: 40%; content: ''; display: block; background-color: #fff; margin-top: 10px;"></div>
+                  <button mat-stroked-button color="accent" routerLink="categories"><mat-icon>sort</mat-icon>VIEW</button>
+
+      </div>
+    </div>
+         &nbsp;
+
+    <div class="box" style="background-image: url(../../assets/img/plumbing.jpg); background-repeat: no-repeat;">
+      <div class="overlay" style="background:rgba(0,0,0,.2); z-index: 1; height: 100%; padding: 10px;">
+        <h3 style="color: white; margin: 0 0 3px 0; font-family: 'Times New Roman', Times, serif; line-height: 1.4em; font-weight: 800; font-size: 25px;">Plumber</h3>
+
+        <div class="line" style="height: 2px; width: 40%; content: ''; display: block; background-color: #fff; margin-top: 10px;"></div>
+                  <button mat-stroked-button color="accent" routerLink="categories"><mat-icon>sort</mat-icon>VIEW</button>
+
+      </div>
+    </div>
+         &nbsp;
+
+    <div class="box" style="background-image: url(../../assets/img/weldering.png); background-repeat: no-repeat;">
+
+      <div class="overlay" style="background:rgba(0,0,0,.2); z-index: 1; height: 100%; padding: 10px;">
+        <h3 style="color: white; margin: 0 0 3px 0; font-family: 'Times New Roman', Times, serif; line-height: 1.4em; font-weight: 800; font-size: 25px;">Steel Constructor</h3>
+
+        <div class="line" style="height: 2px; width: 40%; content: ''; display: block; background-color: #fff; margin-top: 10px;"></div>
+                  <button mat-stroked-button color="accent" routerLink="categories"><mat-icon>sort</mat-icon>VIEW</button>
+
+      </div>
+    </div>
+     &nbsp;
+    <div class="box" style="background-image: url(../../assets/img/catering.jpeg); background-repeat: no-repeat; background-size: cover;">
+      <div class="overlay" style="background:rgba(0,0,0,.2); z-index: 1; height: 100%; padding: 10px;">
+        <h3 style="color: white; margin: 0 0 3px 0; font-family: 'Times New Roman', Times, serif; line-height: 1.4em; font-weight: 800; font-size: 25px;">Catering and Other Services</h3>
+        <div class="line" style="height: 2px; width: 40%; content: ''; display: block; background-color: #fff; margin-top: 10px;"></div>
+        <button mat-stroked-button color="accent" routerLink="categories">
+          <mat-icon>sort</mat-icon>VIEW</button>
+
+      </div>
+    </div>
+</div>
+<hr>
+&nbsp;
 
 
-</mat-card>
 
-<div class="jumbotron">
-  <h3 style="text-align: center; font-size: 20px;">Some Of Our Verified and Trusted Artisans</h3>
+
+
+<div class="jumbotron" style="text-align: center;">
+          <h2 style=" margin: 0 0 3px 0; font-family: 'Times New Roman', Times, serif; line-height: 1.4em; font-weight: 500; font-size: 20px;">Some Of Our Experienced Artisans</h2>
   <div class="content">
 
     <div id="card" class="card bg-light mb-3" *ngFor="let imageList of imageLists" style=" padding: 5px; border-radius: 10px; width: 100%;  ">
@@ -130,7 +162,11 @@
 
           </div>
 
+</div>
+<div style="width: 100%; align-content: center; align-items: center; text-align: center;">
+  <button mat-raised-button routerLink="akube" color="primary" style="align-self: center;" >see more</button>
+</div>
 
-  </div>
+
 
 

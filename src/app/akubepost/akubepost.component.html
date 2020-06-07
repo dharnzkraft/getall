@@ -50,8 +50,8 @@
               <div class="text-danger" *ngIf="isSubmitted && formControls.verify.errors?.required">This Field is Required</div>
             </div>
             <div class="form-group">
-              <label>Address</label> <i style="font-size: 10px; color: red;">(minimum of 50 characters)</i>
-              <input class="form-control" formControlName="address" maxlength="50"  placeholder="3, Unity Close, Ifako Gbagada, Lagos">
+              <label>Address</label> <i style="font-size: 10px; color: red;">(minimum of 25 characters)</i>
+              <input class="form-control" formControlName="address" maxlength="50" minlength="25"  placeholder="3, Unity Close, Ifako Gbagada, Lagos">
               <div class="text-danger" *ngIf="isSubmitted && formControls.address.errors?.required">This Field is Required</div>
             </div>
             <div class="form-group">
