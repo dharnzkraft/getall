@@ -49,6 +49,8 @@ export class AkubeformComponent implements OnInit {
   buttonDisabled: true;
   imageURL: string;
   selectedFile = null;
+  isLoading: boolean;
+  isNotLoading: boolean;
 
   constructor(
     public db: AngularFireDatabaseModule,
@@ -63,7 +65,14 @@ export class AkubeformComponent implements OnInit {
 
   onSubmit(formValue) {
     this.isSubmitted = true;
+    if (this.formTemplate.invalid) {
+      this.isNotLoading = true;
+      this.isLoading = false;
+    } else {
+      this.isLoading = true;
+    }
     if (this.formTemplate.valid) {
+      this.isLoading = true;
       const filePath = `${formValue.category}/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
       const fileRef = this.storage.ref(filePath);
       this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
@@ -94,6 +103,8 @@ export class AkubeformComponent implements OnInit {
     });
     this.isSubmitted = false;
     this.selectedImage = null;
+    this.isLoading = false;
+    this.isNotLoading = false;
   }
 
   get formControls() {

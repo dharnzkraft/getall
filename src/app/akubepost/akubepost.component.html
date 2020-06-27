@@ -1,5 +1,7 @@
 <div class="jumbotron" >
 <app-akubeform></app-akubeform>
+<ngx-scrolltop [backgroundColor]="'#212121'" [symbolColor]="'#fafafa'" [size]="40" [mode]="'classic'" position="right" theme="gray">
+</ngx-scrolltop>
 <br><br>
   <mat-card class="post" style=" padding: 10px;">
 
@@ -13,22 +15,22 @@
           <form [formGroup]="formTemplate">
             <div class="form-group">
               <label>Name</label> <i style="font-size: 10px; color: red;">(minimum of 20 characters)</i>
-              <input type="text" class="form-control" formControlName="name" maxlength="50" minlength="20" placeholder="Mr Collins, Mr Collins & Sons....">
+              <input type="text" class="form-control" formControlName="name" maxlength="50" placeholder="Mr Collins, Mr Collins & Sons....">
               <div class="text-danger" *ngIf="isSubmitted && formControls.name.errors?.required">This Field is Required</div>
             </div>
             <div class="form-group">
               <select formControlName="category" class="formControl">
-                <option value="Auto Repairs" selected>Auto Repair</option>
-                <option value="Electronics and Electrical">Electrical & Electronics</option>
-                <option value="Plumbing And Carpentry">Carpentry & Plumbing</option>
-                <option value="Sales">Sales</option>
-                <option value="Other Services">Other Services</option>
+                <option value="auto" selected>Auto Repair & Metal works</option>
+                <option value="elect">Electrical & Electronics</option>
+                <option value="plumb">Carpentry & Plumbing</option>
+                <option value="sales">Clothing & Accesories Sales</option>
+                <option value="other">Tech. & Other Services</option>
 
               </select>
             </div>
             <div class="form-group">
               <label>Service Description       <i style="font-size: 10px; color: red;">(minimum of 50 characters)</i></label>
-              <input type="text" class="form-control" formControlName="description" maxlength="90" minlength="50"laceholder="We are iTech company, we Offer home delivery......">
+              <input type="text" class="form-control" formControlName="description" maxlength="90" placeholder="We are iTech company, we Offer home delivery......">
               <div class="text-danger" *ngIf="isSubmitted && formControls.description.errors?.required">This Field is Required</div>
             </div>
             <div class="form-group">
@@ -38,10 +40,15 @@
             </div>
             <img [src]="imgSrc" width="250px" height="300px" (click)="fileUploader.click()">
             <br>
+            <!-- <div class="form-group">
+              <label>upload image</label>
+              <input type="file" accept="image/jpg, image/png" class="form-control" #fileUploader formControlName="imageUrl2" >
+              <div class="text-danger" *ngIf="isSubmitted && formControls.imageUrl2.errors?.required">This Field is Required</div>
+            </div> -->
             <br>
             <div class="form-group">
               <label>Phone Number</label> <i style="font-size: 10px; color: red;">(minimum of 11 characters)</i>
-              <input class="form-control" type="number" formControlName="number" maxlength="11" minlength="11" placeholder="08169xxx410">
+              <input class="form-control" type="number" formControlName="number" maxlength="11" placeholder="08169xxx410">
               <div class="text-danger" *ngIf="isSubmitted && formControls.number.errors?.required">This Field is Required</div>
             </div>
             <div class="form-group">
@@ -51,13 +58,23 @@
             </div>
             <div class="form-group">
               <label>Address</label> <i style="font-size: 10px; color: red;">(minimum of 25 characters)</i>
-              <input class="form-control" formControlName="address" maxlength="50" minlength="25"  placeholder="3, Unity Close, Ifako Gbagada, Lagos">
+              <input class="form-control" formControlName="address" maxlength="50"  placeholder="3, Unity Close, Ifako Gbagada, Lagos">
               <div class="text-danger" *ngIf="isSubmitted && formControls.address.errors?.required">This Field is Required</div>
             </div>
             <div class="form-group">
               <button mat-raised-button type="button" (click)="onSubmit(formTemplate.value)" color="accent">Submit</button>
             </div>
           </form>
+        </div>
+        <div *ngIf="isNotLoading" style="width: 100%; text-align: center; align-content: center;">
+          <p style="font-family: 'Times New Roman', Times, serif; color: red; text-shadow: 2px; ">
+            <b>FILL IN THE REQUIRED FIELDS</b>
+          </p>
+        </div>
+        <div *ngIf="isLoading" style="width: 100%; text-align: center; align-content: center; align-items: center; display: flex;">
+          <div class="loader" style="margin: auto;"></div>
+          <br>
+          <p style="font-family: 'Times New Roman', Times, serif; font-size: 20px; color: #6f42c1; margin: auto;">Submitting...</p>
         </div>
       </div>
     </div>

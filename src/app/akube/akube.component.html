@@ -3,7 +3,7 @@
   <mat-card-header><h3 style="width: 100%; text-align: center;">Welcome To Our Store</h3></mat-card-header>
   <div class="content">
 
-      <div class="card bg-light mb-3" *ngFor="let akubeImageList of akubeImageLists" style=" display: flex; padding: 5px; border-radius: 10px;">
+      <div id="card" class="card bg-light mb-3" *ngFor="let akubeImageList of akubeImageLists" style=" display: flex; padding: 5px; border-radius: 10px;">
         <div class="card-header" *ngIf="akubeImageList.imageUrl" style="display: flex;">
           <img [src]="akubeImageList.imageUrl" width="100%" height="300px" style="margin: auto;">
         </div>
@@ -24,7 +24,7 @@
           <div style="display: flex; justify-content: space-around; ">
             <!-- <div id="verify" style="background: #400080; color: #ccc; padding: 5px; border-radius: 10%; width: 70px; height: 35px; text-align: center; ">{{imageList.verify}}</div> -->
 
-            <a mat-raised-button href="https://wa.me/{{akubeImageList.number}}?text=I'm%20interested%20in%20{{akubeImageList.akubename}}%20services%20....%20please"
+            <a mat-raised-button href="https://wa.me/0{{akubeImageList.number}}?text=I'm%20interested%20in%20{{akubeImageList.akubename}}%20services%20....%20please"
               style="background: #128c7e;">
               <i class="fa fa-whatsapp" style="font-size: 25px; color:white; "></i>
             </a>
@@ -32,7 +32,10 @@
 
         </div>
 
+
       </div>
 
   </div>
 </div>
+<ngx-scrolltop [backgroundColor]="'#212121'" [symbolColor]="'#fafafa'" [size]="40" [mode]="'classic'" position="right" theme="gray">
+</ngx-scrolltop>

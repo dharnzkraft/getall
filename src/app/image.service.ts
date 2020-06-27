@@ -10,6 +10,7 @@ export class ImageService {
   homepage1: AngularFireList<any>;
   currentImageList: any;
   currentimageDetails: any;
+  akubeImageLists: any;
 
   constructor(private afd: AngularFireDatabase) { }
 

@@ -56,6 +56,17 @@
           </div>
         </form>
       </div>
+      <div *ngIf="isNotLoading" style="width: 100%; text-align: center; align-content: center;">
+        <p style="font-family: 'Times New Roman', Times, serif; color: red; text-shadow: 2px; ">
+          <b>FILL IN THE REQUIRED FIELDS</b>
+        </p>
+      </div>
+      <div *ngIf="isLoading" style="width: 100%; text-align: center; align-content: center; align-items: center; display: flex;">
+        <div class="loader" style="margin: auto;"></div>
+        <br>
+        <p style="font-family: 'Times New Roman', Times, serif; font-size: 20px; color: #6f42c1; margin: auto;">Submitting...</p>
+      </div>
+      
     </div>
   </div>
 

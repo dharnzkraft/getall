@@ -13,9 +13,9 @@ const routes: Routes = [
   { path: 'categories', component: CategoriesComponent },
   { path: 'post', component: PostComponent },
   { path: 'about', component: AboutComponent},
-  { path: 'akube', component: AkubeComponent},
+  { path: 'shop', component: AkubeComponent},
   { path: 'akubepost', component: AkubepostComponent },
-  // { path: 'details', component: DetailsComponent}
+  { path: 'verifiedForm', component: DetailsComponent}
 ];
 
 @NgModule({

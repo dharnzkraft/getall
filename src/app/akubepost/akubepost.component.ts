@@ -28,6 +28,7 @@ export class AkubepostComponent implements OnInit {
   formTemplate = new FormGroup({
     name: new FormControl('', Validators.required),
     imageUrl: new FormControl('', Validators.required),
+    // imageUrl2: new FormControl('', Validators.required),
     category: new FormControl('', Validators.required),
     description: new FormControl('', Validators.required),
     address: new FormControl('', Validators.required),
@@ -48,7 +49,10 @@ export class AkubepostComponent implements OnInit {
   verified: string;
   buttonDisabled: true;
   imageURL: string;
+  // imageURL2: string;
   selectedFile = null;
+  isLoading: boolean;
+  isNotLoading: boolean;
 
   constructor(
     public db: AngularFireDatabaseModule,
@@ -65,7 +69,14 @@ export class AkubepostComponent implements OnInit {
 
   onSubmit(formValue) {
     this.isSubmitted = true;
+    if (this.formTemplate.invalid) {
+      this.isNotLoading = true;
+      this.isLoading = false;
+    } else {
+      this.isLoading = true;
+    }
     if (this.formTemplate.valid) {
+      this.isLoading = true;
       const filePath = `${formValue.category}/${this.selectedImage.name.split('.').slice(0, -1).join('.')}_${new Date().getTime()}`;
       const fileRef = this.storage.ref(filePath);
       this.storage.upload(filePath, this.selectedImage).snapshotChanges().pipe(
@@ -73,6 +84,8 @@ export class AkubepostComponent implements OnInit {
           fileRef.getDownloadURL().subscribe((url) => {
             // tslint:disable-next-line:no-string-literal
             formValue['imageUrl'] = url;
+            // tslint:disable-next-line:no-string-literal
+            // formValue['imageUrl2'] = url;
             this.service.insertImageDetails(formValue);
             this.resetForm();
           });
@@ -86,15 +99,18 @@ export class AkubepostComponent implements OnInit {
     this.formTemplate.setValue({
       name: '',
       imageUrl: '',
+      // imageUrl2: '',
       category: '',
       description: '',
       address: '',
       number: '',
       verify: ''
     });
-    this.imgSrc = '../../ assets / img / download.png';
+    this.imgSrc = '../../assets/img/download.png';
     this.isSubmitted = false;
     this.selectedImage = null;
+    this.isLoading = false;
+    this.isNotLoading = false;
   }
 
   get formControls() {

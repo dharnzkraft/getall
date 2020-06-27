@@ -1,5 +1,5 @@
 <div  style=" padding: 5px; border-radius: 0 0 5px 5px; color:#8c8c8c; background: white; text-align: center;  width: 100%;">
-  <img src="../../assets/img/hiring.png" alt="banner" style="width: 100%; height: 30%; position: relative;" />
+  <img src="../../assets/img/hiring.png" alt="banner" style="width: 60%; height: 30%; position: relative;" />
 </div>
 
 <mat-card class="post" style=" padding: 10px;">
@@ -12,17 +12,18 @@
       <div class="card-body">
         <form [formGroup]="formTemplate">
           <div class="form-group">
-            <label>Name <i style="font-size: 10px; color: red;">(minimum of 20 characters)</i></label>
-            <input type="text" class="form-control" formControlName="name" maxlength="30" minlength="20" placeholder="Mr Collins, Mr Collins & Sons....">
+            <label>Name</label>
+            <input type="text" class="form-control" formControlName="name" maxlength="30"  placeholder="Mr Collins, Mr Collins & Sons....">
             <div class="text-danger" *ngIf="isSubmitted && formControls.name.errors?.required">This Field is Required</div>
           </div>
-          <div class="form-group">
-            <select formControlName="category" class="formControl">
-              <option value="auto" default>Auto Repair</option>
+          <div class="form-group ">
+            <label for="inputState">Category</label><br>
+            <select id="inputState" formControlName="category" class="formControl custom-select mr-sm-2">
+              <option value="auto" >Auto Repair & Metal works</option>
               <option value="elect">Electrical & Electronics</option>
               <option value="plumb">Woodwork & Plumbing</option>
-              <option value="sales">Sales</option>
-              <option value="other">Other Services</option>
+              <option value="sales">Clothing & Sales</option>
+              <option value="other">Tech. and Other Services</option>
 
             </select>
           </div>
@@ -31,16 +32,18 @@
             <input type="text" class="form-control" formControlName="verify">
           </div>
           <div class="form-group">
-            <label>Service Description <i style="font-size: 10px; color: red;">(minimum of 50 characters)</i></label>
-            <input type="text" class="form-control" formControlName="description" maxlength="80" minlength="50"  placeholder="We offer quality fashion design services.......">
-            <div class="text-danger" *ngIf="isSubmitted && formControls.description.errors?.required">This Field is Required min. of 50 characters</div>
+            <label>Service Description</label>
+            <input type="text" class="form-control" formControlName="description" maxlength="80"  placeholder="We offer quality fashion design services.......">
+            <div class="text-danger" *ngIf="isSubmitted && formControls.description.errors?.required ">This Field is Required min. of 50 characters</div>
           </div>
-          <div class="form-group">
+          <div class="form-group custom-file">
             <label>upload image</label>
             <input type="file" accept="image/jpg, image/png" class="form-control" #fileUploader formControlName="imageUrl" (change)="showPreview($event)">
 
             <div class="text-danger" *ngIf="isSubmitted && formControls.imageUrl.errors?.required">This Field is Required</div>
           </div>
+          <br>
+          <br>
           <img [src]="imgSrc" width="250px" height="300px" (click)="fileUploader.click()">
 
           <br>
@@ -48,13 +51,13 @@
           <div class="form-group">
             <label>Phone Number </label>
             <input class="form-control" type="number" formControlName="number" maxlength="11"  placeholder="e.g: 08169xxx410">
-            <div class="text-danger" *ngIf="isSubmitted && formControls.number.errors?.required">This Field is Required</div>
+            <div class="text-danger" *ngIf="isSubmitted && formControls.number.errors?.required ">This Field is Required</div>
           </div>
           <br><br>
           <div class="form-group">
-            <label>Address <i style="font-size: 10px; color: red;">(minimum of 30 characters)</i></label>
-            <input class="form-control" formControlName="address" maxlength="60" minlength="30"  placeholder="3, Unity Close, Ifako Gbagada, Lagos">
-            <div class="text-danger" *ngIf="isSubmitted && formControls.address.errors?.required">This Field is Required</div>
+            <label>Address</label>
+            <input class="form-control" formControlName="address" maxlength="60" placeholder="3, Unity Close, Ifako Gbagada, Lagos">
+            <div class="text-danger" *ngIf="isSubmitted && formControls.address.errors?.required ">This Field is Required</div>
           </div>
 
 
@@ -62,6 +65,11 @@
             <button mat-raised-button type="button" (click)="onSubmit(formTemplate.value)" color="accent">Submit</button>
           </div>
         </form>
+      </div>
+      <div *ngIf="isNotLoading" style="width: 100%; text-align: center; align-content: center;"><p style="font-family: 'Times New Roman', Times, serif; color: red; text-shadow: 2px; "><b>FILL IN THE REQUIRED FIELDS</b></p></div>
+      <div *ngIf="isLoading" style="width: 100%; text-align: center; align-content: center; align-items: center; display: flex;">
+        <div class="loader" style="margin: auto;"></div><br>
+        <p style="font-family: 'Times New Roman', Times, serif; font-size: 20px; color: #6f42c1; margin: auto;">Submitting...</p>
       </div>
     </div>
   </div>

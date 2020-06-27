@@ -4,6 +4,8 @@ import { AngularFireDatabase, AngularFireAction } from '@angular/fire/database';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { ImageService } from './../image.service';
 import { switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
+
 
 export class Item {
   body: string;
@@ -42,10 +44,13 @@ export class AkubeComponent implements OnInit {
   category$: BehaviorSubject<string | null>;
   category: any;
 
+
+
   constructor(
     public db: AngularFireDatabaseModule,
     public afd: AngularFireDatabase,
-    private service: ImageService
+    private service: ImageService,
+    private router: Router
   ) {
     this.getAkube();
   }
@@ -56,9 +61,14 @@ export class AkubeComponent implements OnInit {
   getAkube() {
     this.afd.list('/akubeImageDetails', ref => ref.orderByChild('category').equalTo('akube')).valueChanges().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.akubeImageLists = data;
       }
     );
   }
+
+  // onGoToDetailsPage(akubeImageLists) {
+  //   this.service.getAkubeImageDetails = akubeImageLists;
+  //   this.router.navigate(['/details']);
+  // }
 }

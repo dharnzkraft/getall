@@ -57,18 +57,18 @@ export class HomeComponent implements OnInit {
 
 
   getAkube() {
-    this.afd.list('/akubeImageDetails', ref => ref.orderByChild('category').limitToLast(4).equalTo('akube')).valueChanges().subscribe(
+    this.afd.list('/akubeImageDetails', ref => ref.orderByChild('category').limitToLast(3).equalTo('akube')).valueChanges().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.akubeImageLists = data;
       }
     );
   }
 
   showVerify() {
-    this.afd.list('/imageDetails', ref => ref.orderByChild('verify').limitToLast(4).equalTo('verified')).valueChanges().subscribe(
+    this.afd.list('/imageDetails', ref => ref.orderByChild('verify').limitToLast(6).equalTo('verified')).valueChanges().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.imageLists = data;
       }
     );

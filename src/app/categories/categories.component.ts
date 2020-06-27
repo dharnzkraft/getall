@@ -4,7 +4,7 @@ import { AngularFireDatabase, AngularFireAction } from '@angular/fire/database';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { ImageService } from './../image.service';
 import { switchMap } from 'rxjs/operators';
-import { Router } from '@angular/router';
+import { Router, NavigationStart, NavigationEnd, Event, RouterEvent } from '@angular/router';
 
 export class Item {
   body: string;
@@ -44,7 +44,7 @@ export class CategoriesComponent implements OnInit {
   page = 1;
   query = [] as any;
   panelOpenState = false;
-
+  showLoadingIndicator = true;
 
 
 
@@ -56,21 +56,22 @@ export class CategoriesComponent implements OnInit {
 
   ) {
     this.getDataFromFirebase();
-    // this.category$ = new BehaviorSubject(null);
-    // this.imageDetails$ = this.category$.pipe(switchMap(category =>
-    //   afd.list('/imageDetails', ref =>
-    //     category ? ref.orderByChild('category').equalTo(category) : ref
-    //   ).snapshotChanges()
-    // ));
+    this.router.events.subscribe((routerEvent: Event) => {
+      if (routerEvent instanceof NavigationStart) {
+        this.showLoadingIndicator = true;
+      }
+
+      if (routerEvent instanceof NavigationEnd) {
+        this.showLoadingIndicator = false;
+      }
+    });
 
    }
 
   ngOnInit() {
   }
 
-  scrollToTop(el) {
-  el.scrollTop = 0;
-  }
+
   // onGoToDetailsPage(imageList) {
   //   this.service.currentImageList = imageList;
   //   this.router.navigate(['/details']);
@@ -80,7 +81,7 @@ export class CategoriesComponent implements OnInit {
 
     this.afd.list(`imageDetails`).valueChanges().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.imageLists = data;
 
       }
@@ -95,9 +96,7 @@ togglePanel() {
     if (!this.query.search) {
       this.getDataFromFirebase();
     }
-    // else {
-    //   this.requestSearchPhotos();
-    // }
+
   }
 
 
@@ -105,7 +104,7 @@ togglePanel() {
   showAuto() {
     this.afd.list('/imageDetails', ref => ref.orderByChild('category').equalTo('auto')).valueChanges().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.imageLists = data;
       }
     );
@@ -116,7 +115,7 @@ togglePanel() {
   showVerify() {
     this.afd.list('/imageDetails', ref => ref.orderByChild('verify').equalTo('verified')).valueChanges().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.imageLists = data;
       }
     );
@@ -146,7 +145,7 @@ togglePanel() {
   showElect() {
     this.afd.list('/imageDetails', ref => ref.orderByChild('category').equalTo('elect')).valueChanges().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.imageLists = data;
       }
     );
@@ -156,7 +155,7 @@ togglePanel() {
   showOther() {
     this.afd.list('/imageDetails', ref => ref.orderByChild('category').equalTo('other')).valueChanges().subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.imageLists = data;
       }
     );

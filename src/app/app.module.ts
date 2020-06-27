@@ -42,6 +42,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 // import { MatFileUploadModule } from 'angular-material-fileupload';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { DetailsComponent } from './details/details.component';
+import { NgxScrollTopModule } from 'ngx-scrolltop';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -83,10 +85,12 @@ import { DetailsComponent } from './details/details.component';
     OwlModule,
     ReactiveFormsModule,
     ScrollingModule,
-    InfiniteScrollModule
+    InfiniteScrollModule,
+    NgxScrollTopModule
 
   ],
   providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
     // { provide: BUCKET, useValue: 'images' }
   ],
   bootstrap: [AppComponent]

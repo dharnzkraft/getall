@@ -1,4 +1,4 @@
-<div class="container" #container>
+<div class="container">
 
     <div class=" menu">
       <mat-accordion>
@@ -10,7 +10,7 @@
 
           </mat-expansion-panel-header>
 
-            <button style="width: 80%;" mat-flat-button color="accent" (click)="showAuto()" >Auto Repairs</button>
+            <button style="width: 80%;" mat-flat-button color="accent" (click)="showAuto()" >Auto Repairs & Metal works</button>
             <br>
             <hr>
             <button style="width: 80%;" mat-flat-button color="accent" (click)="showElect()">Electronic And Electrical Repairs</button>
@@ -19,10 +19,10 @@
             <button style="width: 80%;" mat-flat-button color="accent" (click)="showPlum()">Plumbing And Carpentry</button>
             <br>
             <hr>
-            <button style="width: 80%;" mat-flat-button color="accent" (click)="showSale()">Accessories Sales</button>
+            <button style="width: 80%;" mat-flat-button color="accent" (click)="showSale()">Clothing & Accessories Sales</button>
             <br>
             <hr>
-            <button style="width: 80%;" mat-flat-button color="accent" (click)="showOther()">Other Services</button>
+            <button style="width: 80%;" mat-flat-button color="accent" (click)="showOther()">Tech. and Other Services</button>
             <br>
             <hr>
             <button style="width: 80%;" mat-flat-button color="accent" (click)="showVerify()">Verified Artisans</button>
@@ -35,13 +35,12 @@
       <marquee style="color: red;"><h5>Please be informed that WE ARE ONLY RESPONSIBLE FOR OUR VERIFIED ARTISANS and always agree to meet a seller/buyer at an open
       place where your security is guaranteed!</h5> </marquee>
     </div>
-
-<br>
-<div class="content" >
-
-
-
-        <div class="card bg-light mb-3" *ngFor="let imageList of imageLists" style=" display: flex; padding: 5px; border-radius: 10px;" >
+    <div *ngIf="showLoadingIndicator">Loading....</div>
+    <br>
+    <ngx-scrolltop [backgroundColor]="'#212121'" [symbolColor]="'#fafafa'" [size]="40" [mode]="'classic'" position="right" theme="gray">
+    </ngx-scrolltop>
+    <div class="content" >
+        <div id="card" class="card bg-light mb-3" *ngFor="let imageList of imageLists" style=" display: flex; padding: 5px; border-radius: 10px;" >
           <div class="card-header" *ngIf="imageList.imageUrl" style="display: flex;">
             <img [src]="imageList.imageUrl" width="100%" height="300px" style="margin: auto;">
           </div>
@@ -60,22 +59,20 @@
 
 
             <br>
-            <div style="display: flex; justify-content: space-around; ">
-              <div id="verify" style="background: #400080; color: #ccc; padding: 5px; border-radius: 10%; width: 70px; height: 35px; text-align: center; text-transform: uppercase; font-family: serif; font-size: 10px;">{{imageList.verify}}</div>
+            <div id="dial" style="display: flex; justify-content: space-around; ">
+              <div id="verify" style="background: #400080; color: #ccc; padding: 5px; border-radius: 10%; width: 70px; text-align: center; text-transform: uppercase; font-family: serif; font-size: 10px;">{{imageList.verify}}</div>
               &nbsp;&nbsp;
-              <a mat-raised-button href="https://wa.me/0{{imageList.number}}?text=I'm%20interested%20in%20{{imageList.name}}%20services%20....%20please"
+              <a mat-raised-button href="https://wa.me/+234{{imageList.number}}?text=I'm%20interested%20in%20{{imageList.name}}%20services%20....%20please"
                 style="background: #128c7e;">
-                <i class="fa fa-whatsapp" style="font-size: 25px; color:white; "></i>
+                <i class="fa fa-whatsapp" style="font-size: 25px; color:white; margin-top: -5px;"></i>
               </a>
             </div>
 
           </div>
+        </div>
+  </div>
 
-
-
-      </div>
 </div>
-<button (click)="scrollToTop(container)">scroll to top</button>
 
 
 
