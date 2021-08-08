@@ -130,6 +130,29 @@ export class AkubepostComponent implements OnInit {
       this.selectedImage = null;
     }
   }
+
+
+  showPost1(){
+    const x = document.getElementById('post1');
+    const y = document.getElementById('post2');
+    if (x.style.display === 'none') {
+      x.style.display = 'block';
+      y.style.display = 'none';
+    } else {
+      x.style.display = 'none';
+    }
+  }
+
+  showPost2(){
+    const x = document.getElementById('post2');
+    const y = document.getElementById('post1');
+    if (x.style.display === 'none') {
+      x.style.display = 'block';
+      y.style.display = 'none';
+    } else {
+      x.style.display = 'none';
+    }
+  }
   // addAkube() {
   //   this.afd.list(`akube`).push({
   //     akubename: this.akubename, akubesize: this.akubesize, akubeprice: this.akubeprice, akubelocation: this.akubelocation,

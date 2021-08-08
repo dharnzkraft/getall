@@ -20,8 +20,16 @@
   100% { transform: rotate(360deg); }
 }
 
-.post{
+.post2{
   align-items: center;
   display: flex;
   flex-direction: column;
+}
+
+.menubox{
+  height: 150px;
+  width: 90%;
+  border-radius: 5px;
+  box-shadow: #ccc 0px 5px 6px 0px;
+
 }

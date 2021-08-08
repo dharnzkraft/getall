@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireDatabase, AngularFireAction } from '@angular/fire/database';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
 import { ImageService } from './../image.service';
 import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { DetailsService } from './../details.service';
 
 
 export class Item {
@@ -17,24 +18,12 @@ export class Item {
   styleUrls: ['./akube.component.scss']
 })
 export class AkubeComponent implements OnInit {
-
+  @Output() dataLoaded: EventEmitter<any> = new EventEmitter<any>();
   Posts: Observable<any[]>;
-  Item: string;
-  Auto: string;
-  Agric: string;
-  Fabric: string;
-  Elect: string;
-  sales: Observable<any[]>;
-  elects: Observable<any[]>;
-  agric: Observable<any[]>;
-  auto: Observable<any[]>;
-  Items: any;
-  Autos: any;
-  Agrics: any;
+
   name: string;
   Fabrics: any;
   location: string;
-  Elects: any;
   description: string;
   details: string;
   imageList: any[];
@@ -50,12 +39,20 @@ export class AkubeComponent implements OnInit {
     public db: AngularFireDatabaseModule,
     public afd: AngularFireDatabase,
     private service: ImageService,
-    private router: Router
+    private router: Router,
+    private detailService: DetailsService
   ) {
     this.getAkube();
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.detailService.getData().subscribe(
+      (data: any) => {
+        this.dataLoaded.emit(data);
+
+        this.detailService.setData(data);
+      }
+    );
   }
 
   getAkube() {
@@ -65,6 +62,11 @@ export class AkubeComponent implements OnInit {
         this.akubeImageLists = data;
       }
     );
+  }
+
+  moredetails() {
+    this.service.getAkubeImageDetails();
+    this.router.navigateByUrl('/details/:id');
   }
 
   // onGoToDetailsPage(akubeImageLists) {

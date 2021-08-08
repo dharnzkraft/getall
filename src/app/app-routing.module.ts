@@ -14,8 +14,8 @@ const routes: Routes = [
   { path: 'post', component: PostComponent },
   { path: 'about', component: AboutComponent},
   { path: 'shop', component: AkubeComponent},
-  { path: 'akubepost', component: AkubepostComponent },
-  { path: 'verifiedForm', component: DetailsComponent}
+  { path: 'admin', component: AkubepostComponent },
+  { path: 'details/:id', component: DetailsComponent}
 ];
 
 @NgModule({

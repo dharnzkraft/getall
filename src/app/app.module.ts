@@ -44,6 +44,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { DetailsComponent } from './details/details.component';
 import { NgxScrollTopModule } from 'ngx-scrolltop';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { ProductdetailComponent } from './productdetail/productdetail.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     AkubeComponent,
     AkubepostComponent,
     AkubeformComponent,
-    DetailsComponent
+    DetailsComponent,
+    ProductdetailComponent
   ],
   imports: [
   BrowserModule,

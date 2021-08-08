@@ -110,7 +110,6 @@ togglePanel() {
     );
     this.panelOpenState = !this.panelOpenState;
 
-
   }
   showVerify() {
     this.afd.list('/imageDetails', ref => ref.orderByChild('verify').equalTo('verified')).valueChanges().subscribe(
